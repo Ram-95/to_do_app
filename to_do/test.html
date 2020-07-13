@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<style>
+#exampleCheck {
+	width: 31px;
+	height: 31px;
+}
+
+.form-control {
+	width: 150%;
+}
+
+.button-row {
+	text-align: right;
+}
+</style>
+
+
+<script>
+$(document).ready(function(){
+	//Adds a row to the To-Do List
+	$(document).on("click", ".addrow", function() {
+	var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td><input type="text" class="form-control" placeholder="Enter your Task"></td><td class="button-row"><button type="button" class="btn btn-success addrow">Add Task</button> &nbsp; &nbsp; &nbsp;<button type="button" class="btn btn-danger deleterow" title="Delete this task">Delete</button></td></tr>';
+		   $("#maintable").append(row); 
+	});
+	
+
+//Deletes the selected row
+	$(document).on("click", ".deleterow", function() {
+       $(this).parent().parent().remove(); 
+	});
+
+//Moves the row from To-Do list to Done list
+});
+</script>
+
+
+</head>
+<body>
+<div class="container" style="text-align: center;">
+<h2>To-Do List</h2>
+<br>
+<div class="container" style="text-align: center; width: 80%">
+	<table class= "table table-hover" id="maintable">
+		<tr>
+			<td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td>
+			<td><input type="text" class="form-control" placeholder="Enter your Task"></td>
+			<td class="button-row">
+				<button type="button" class="btn btn-success addrow" >Add Task</button> &nbsp; &nbsp; &nbsp;
+				<button type="button" class="btn btn-danger deleterow" title="Delete this task">Delete</button>
+			</td>
+		
+		</tr>
+	
+	</table>
+<div>
+</div>
+</body>
+</html>

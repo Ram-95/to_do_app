@@ -1,0 +1,43 @@
+{% extends "to_do_app/base.html" %}
+{% block content %}
+<div class="container" style="text-align: center;">
+<br>
+<div class="container" style="text-align: center; width: 80%">
+
+	<table class= "table table-hover" id="maintable">
+	<thead class="thead-dark">
+		<th colspan=4>
+			<h2>To-Do List</h2>
+		</th>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan=4>
+		<button type="button" class="btn btn-success" id="add-new-row"><strong>Add New Task</strong></button>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+	<hr>
+	
+	<table class= "table" id="completed-table">
+	<thead class="thead-dark">
+		<th colspan=4>
+			<h3>Completed Tasks</h3>
+		</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input type="checkbox" title="Completed" class="form-check-input" id="exampleCheck" checked disabled></td>
+			<td><input type="text" class="completed-tasks" value="Completed Tasks go here.." disabled></td>				
+			<td class="button-row">
+			</td>
+			</td>
+		
+		</tr>
+	</tbody>
+	</table>
+
+</div>
+</div>
+{% endblock content %}
