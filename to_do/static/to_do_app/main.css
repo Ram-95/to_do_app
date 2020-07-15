@@ -1,0 +1,37 @@
+body {
+max-width: 100%;
+}
+
+#exampleCheck {
+	width: 31px;
+	height: 31px;
+}
+
+.form-control {
+	width: 125%;
+}
+
+.button-row {
+	text-align: right;
+}
+
+.completed-tasks {
+	color: red;
+}
+
+.main-header {
+    /*background-color: #092e20;*/
+    background-color: indigo;
+    maxwidth: 100%;
+    height: 100px;
+    color: white;
+    padding: 22px;
+}
+
+.title-header {
+    float: left;
+}
+
+.thead-green {
+    background-color: #81b54e;
+}

@@ -1,88 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     {% if title %}
         <title>To-Do App - {{ title }}</title>
     {% else %}
         <title>To-Do App</title>
     {% endif %}
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Link to JavaScript File  -->
+    <script src="{% static 'to_do_app/script.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Link to Css File -->
+    <link rel="stylesheet" type="text/css" href="{% static 'to_do_app/main.css' %}">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-<style>
-body {
-max-width: 100%;
-}
-
-#exampleCheck {
-	width: 31px;
-	height: 31px;
-}
-
-.form-control {
-	width: 125%;
-}
-
-.button-row {
-	text-align: right;
-}
-
-.completed-tasks {
-	width: 100%;
-	height: 36px;
-}
-
-.main-header {
-    background-color: #092e20;
-    maxwidth: 100%;
-    height: 100px;
-    color: white;
-    padding: 22px;
-}
-</style>
-
-
-<script>
-$(document).ready(function(){
-	/*if ($("#maintable tbody tr").length == 0) {
-		alert('Length is ' + $("#maintable").length);
-		var new_row = '<tr><td><button type="button" class="btn btn-success" id="add-new-row"><strong>Add New Task</strong></button></td></tr>'
-		$("#maintable").append(new_row);
-		
-		
-	};*/
-	
-	//Adds a New Row to the Table
-	
-	$(document).on("click", "#add-new-row", function() {
-		//$(this).parent().parent().remove();
-		var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td><input type="text" class="form-control" placeholder="Enter your Task"></td><td><button type="button" style="float: right;" class="btn btn-danger deleterow" title="Delete this task">Delete</button></td></tr>';
-		$("#maintable").append(row);
-	});
-	
-	/*//Adds a row to the To-Do List
-	$(document).on("click", ".addrow", function() {
-	var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td><input type="text" class="form-control" placeholder="Enter your Task"></td><td class="button-row"><button type="button" class="btn btn-success addrow">Add Task</button> &nbsp; &nbsp; &nbsp;<button type="button" class="btn btn-danger deleterow" title="Delete this task">Delete</button></td></tr>';
-		   $("#maintable").append(row); 
-	});
-	*/
-	
-
-	//Deletes the selected row
-	$(document).on("click", ".deleterow", function() {
-       $(this).parent().parent().remove(); 
-	});
-
-	//Moves the row from To-Do list to Done list
-});
-</script>
 </head>
 <body>
-<div class="main-header">
-	<h1 style="float: left;"><strong>To-Do App</strong></h1>
-	<img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" height= "70" width="180" style="float: right; padding-bottom: 5px;">
+<div class="container main-header">
+	<h1 class="title-header"><strong>To-Do App</strong></h1>
 	</div>
     {% block content %}{% endblock %}
 </body>
