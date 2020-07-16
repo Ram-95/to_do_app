@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container" style="text-align: center;">
 <br>
-<div class="container" style="text-align: center; width: 80%">
+<div class="container main-container">
 
 	<table class= "table table-hover" id="maintable">
 	<thead class="thead-dark">
@@ -19,8 +19,8 @@
 	{% for task in tasks %}
 		{% if not task.is_checked %}
 		<tr>
-			<td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td>
-			<td><h4 align="left">{{ task.task_title }}</h4></td>
+			<td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="{{ task.id }}"></td>
+			<td><h4 align="left" id="title{{ task.id }}">{{ task.task_title }} ({{ task.author }})</h4></td>
 			<td><button type="button" style="float: right;" class="btn btn-danger deleterow" title="Delete this task">Delete</button></td>
 		</tr>
 		{% endif %}
@@ -39,8 +39,8 @@
 	{% for task in tasks %}
 		{% if task.is_checked %}
 		<tr>
-			<td><input type="checkbox" title="Completed" class="form-check-input" id="exampleCheck" checked></td>
-			<td><h4 align="left" style="color: red;"><strike>{{ task.task_title }}</strike></h4></td>
+			<td><input type="checkbox" title="Completed" class="form-check-input mark_as_undone" id="{{ task.id }}" checked></td>
+			<td><h4 align="left" class="completed_tasks">{{ task.task_title }} ({{ task.author }})</h4></td>
 			<td class="button-row"></td>
 		</tr>
 		{% endif %}

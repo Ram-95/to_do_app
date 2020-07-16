@@ -10,7 +10,7 @@ class Task(models.Model):
     task_title = models.CharField(max_length=60)
 
     # Stores the Checked status i.e, if the check box is checked or not; 0 - Not Checked; 1 -Checked
-    is_checked = models.IntegerField(default=0)
+    is_checked = models.BooleanField(default=False)
 
     # Denotes when the task is added - Updates the Current Date and Time
     date_posted = models.DateTimeField(default=timezone.now)
