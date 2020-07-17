@@ -20,8 +20,9 @@ max-width: 100%;
 	text-align: right;
 }
 
-.completed-tasks {
+.completed_tasks {
 	color: red;
+	text-decoration: line-through;
 }
 
 .main-header {
@@ -40,14 +41,9 @@ max-width: 100%;
 }
 
 .title-header {
-    float: left;
+    text-align: center;
 }
 
 .thead-green {
     background-color: #81b54e;
-}
-
-.completed_tasks {
-    text-decoration: line-through;
-    color: red;
 }

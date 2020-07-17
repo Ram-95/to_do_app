@@ -15,22 +15,36 @@ def home(request):
     }
     return render(request, 'to_do_app/home.html', context)
 
+
 def test(request):
     return render(request, 'to_do_app/test.html')
 
-def mark_as_done(request):
-    ''' Function that Marks a task as Completed. Updates the 'is_checked' attribute to 'True'.'''
+
+def move_tasks(request):
+    ''' Function to move the tasks from Active Table to Complete Table and vice-versa. '''
     if request.method == 'GET':
-        # Get the task_id from the checked Checkbox
+        # Gets the Task's ID from the checkbox that is clicked
         task_id = request.GET['task_id']
-        # Select the Task whose id matches with task_id
-        done_task = Task.objects.get(pk=task_id)
-        # Update the 'is_checked' attribute to True. i.e, Mark as Done
-        done_task.is_checked = True
-        # Save the update to the Database
-        done_task.save()
+        # Gets the Task's Class name from the checkbox that is clicked
+        task_class = request.GET['task_class']
+        # If the Clicked Task is an Active Task - Move it from Active Table to Complete Table
+        if 'mark_as_done' in task_class:
+            # Select the Task whose id matches with task_id
+            done_task = Task.objects.get(pk=task_id)
+            # Update the 'is_checked' attribute to True. i.e, Mark as Done
+            done_task.is_checked = True
+            # Save the changes to the Database
+            done_task.save()
+
+        # If the Clicked Task is a Complete Task - Move it from Complete Table to Active Table
+        elif 'mark_as_undone' in task_class:
+            # Select the task matching with the task_id
+            undone_task = Task.objects.get(pk=task_id)
+            # Update the 'is_checked' attribute to 'False' i.e, Mark as Undone
+            undone_task.is_checked = False
+            # Save the changes to the Database
+            undone_task.save()
 
         return HttpResponse("Success!")
     else:
         return HttpResponse("Request method is not GET.")
-

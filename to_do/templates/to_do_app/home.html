@@ -7,7 +7,7 @@
 	<table class= "table table-hover" id="maintable">
 	<thead class="thead-dark">
 		<th colspan=4>
-			<h2>To-Do List</h2>
+			<h2>Active Tasks</h2>
 		</th>
 	</thead>
 	<tbody>
@@ -40,7 +40,7 @@
 		{% if task.is_checked %}
 		<tr>
 			<td><input type="checkbox" title="Completed" class="form-check-input mark_as_undone" id="{{ task.id }}" checked></td>
-			<td><h4 align="left" class="completed_tasks">{{ task.task_title }} ({{ task.author }})</h4></td>
+			<td><h4 align="left" class="completed_tasks" id="title{{ task.id }}">{{ task.task_title }} ({{ task.author }})</h4></td>
 			<td class="button-row"></td>
 		</tr>
 		{% endif %}
