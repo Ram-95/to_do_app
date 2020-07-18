@@ -26,7 +26,6 @@ max-width: 100%;
 }
 
 .main-header {
-    /*background-color: #092e20;*/
     background-color: indigo;
     max-width: 100%;
     height: 80px;
@@ -46,4 +45,14 @@ max-width: 100%;
 
 .thead-green {
     background-color: #81b54e;
+}
+
+.btn-side {
+  background-color: #dc3545;
+  border: none;
+  border-radius: 10%;
+  color: white;
+  padding: none;
+  font-size: 18px;
+  cursor: pointer;
 }

@@ -1,8 +1,9 @@
 from django.shortcuts import render
 # Imports our Task Model - i.e, Our DB Table
 from .models import Task
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
+from django.forms.models import model_to_dict
 
 user = User.objects.first()
 
@@ -46,5 +47,26 @@ def move_tasks(request):
             undone_task.save()
 
         return HttpResponse("Success!")
+    else:
+        return HttpResponse("Request method is not GET.")
+
+
+def add_new_task(request):
+    if request.method == 'GET':
+        # Getting the task Name from Ajax
+        task_name = request.GET['task_title']
+        # Dummy User - for the purpose of testing
+        creator = User.objects.last()
+        # Adding the task to the Database Table - Task
+        temp_task = Task(task_title=task_name, author=creator)
+        # Saving the changes to the Database
+        temp_task.save()
+        # Converting the newly added task that is saved to Dictionary format and returning as JSON format
+        task_json_string = model_to_dict(temp_task, fields=['id', 'task_title', 'author'])
+
+        # Returning the Saved Tasks details in JSON Format to the AJAX Code.
+        # The AJAX Code will then add this task to the Active Tasks Table.
+        return JsonResponse(task_json_string)
+
     else:
         return HttpResponse("Request method is not GET.")
