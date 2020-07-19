@@ -5,8 +5,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+# This is similar to Creating a DB Table with attributes and Data Types
 class Task(models.Model):
-    # Stores the Title of the Task
+    '''Creates a Table called 'Task' in the Database. Contains the definition of Table and it's attributes.'''
+    # Stores the Title of the Task - Restricted to 60 Characters
     task_title = models.CharField(max_length=60)
 
     # Stores the Checked status i.e, if the check box is checked or not; 0 - Not Checked; 1 -Checked
@@ -15,7 +17,7 @@ class Task(models.Model):
     # Denotes when the task is added - Updates the Current Date and Time
     date_posted = models.DateTimeField(default=timezone.now)
 
-    # If a author is deleted, then all his posts will also be deleted since CASCADE
+    # If a author is deleted, then all his tasks will also be deleted since CASCADE option is set
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,11 +1,12 @@
 from django.shortcuts import render
-# Imports our Task Model - i.e, Our DB Table
+# Imports our 'Task' Model(Table) - i.e, Our Table in the Database
 from .models import Task
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 
 user = User.objects.first()
+
 
 def home(request):
     context = {
@@ -82,7 +83,20 @@ def delete_task(request):
         del_task = Task.objects.get(id=task_id)
         # Deleting the task from the Table
         del_task.delete()
-
+        print(f'Deleted the Task with ID: {task_id}')
         return HttpResponse("Deleted the Task")
     else:
         return HttpResponse("Request method is not GET.")
+
+
+def delete_all_completed_tasks(request):
+    '''Deletes all the Completed tasks from the Completed Table'''
+    if request.method == 'GET':
+        # Getting the Tasks that are Marked as Completed - i.e, Tasks that have is_checked == 1
+        del_tasks = Task.objects.filter(is_checked=1)
+        # Deleting the Completed Tasks
+        del_tasks.delete()
+        print('Deleted all Completed Tasks')
+        return HttpResponse("Successfully Deleted all Completed Tasks")
+    else:
+        return HttpResponse("Request is not GET.")

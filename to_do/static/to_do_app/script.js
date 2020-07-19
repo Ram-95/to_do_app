@@ -1,24 +1,16 @@
 $(document).ready(function(){
 
-	//Adds a New Row to the Table
-
+	/* Adds a New Row to the Table */
 	$(document).on("click", "#add-new-row", function() {
-		//$(this).parent().parent().remove();
-		var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td colspan="2"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><button class="btn btn-side" id="add_task_btn" title="Add Task" style="background-color: green; float: left;"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;<button title="Delete this Task" style="float: right;" class="btn btn-side deleterow delete_new_row"><i class="fa fa-close"></i></button></td></tr>';
+		var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td colspan="2"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><button class="btn btn-side" id="add_task_btn" title="Save" style="background-color: green; float: left;"><i class="fa fa-save"></i></button>&nbsp;&nbsp;<button title="Delete this Task" style="float: right;" class="btn btn-side deleterow delete_new_row"><i class="fa fa-close"></i></button></td></tr>';
 		if($('.add_task').length == 0) {
     		$("#maintable").append(row);
 		}
 	});
 
-	/*//Adds a row to the To-Do List
-	$(document).on("click", ".addrow", function() {
-	var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td><input type="text" class="form-control" placeholder="Enter your Task"></td><td class="button-row"><button type="button" class="btn btn-success addrow">Add Task</button> &nbsp; &nbsp; &nbsp;<button type="button" class="btn btn-danger deleterow" title="Delete this task">Delete</button></td></tr>';
-		   $("#maintable").append(row);
-	});
-	*/
 
 
-	//Deletes the selected row
+	/* Deletes the selected row */
 	$(document).on("click", ".delete_existing_row, .delete_new_row", function() {
 	    // If the delete button of new row is clicked, then delete that row
 	    if($(this).hasClass('delete_new_row')) {
@@ -45,6 +37,30 @@ $(document).ready(function(){
             })
         }
       });
+
+
+    /* Deletes all the Completed Tasks */
+    $("#completed-table").on('click', '#clear_all_completed_tasks', function() {
+        // Checks if the Number of rows in Completed Table. If less than or equal to 2 then alerts the user with appropriate message
+        // Else Deletes all the Completed Tasks
+        if($('#completed-table tr').length <= 2) {
+            alert('No Complete Tasks to Clear!');
+        }
+        else
+        {
+               $.ajax(
+               {
+                   type: "GET",
+                   url: "/delete_all_completed_tasks",
+                   data:{},
+                   success: function()
+                   {
+                        // Removes all the rows from table except the first row
+                        $("#completed-table").find("tr:gt(1)").remove();
+                   }
+               })
+        }
+    });
 
 
 	/* Adding a New Task to the Database and show the same in the Active Task Table */
