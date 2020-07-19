@@ -52,6 +52,7 @@ def move_tasks(request):
 
 
 def add_new_task(request):
+    '''Adds a New Task to the Task Table in Database.'''
     if request.method == 'GET':
         # Getting the task Name from Ajax
         task_name = request.GET['task_title']
@@ -68,5 +69,20 @@ def add_new_task(request):
         # The AJAX Code will then add this task to the Active Tasks Table.
         return JsonResponse(task_json_string)
 
+    else:
+        return HttpResponse("Request method is not GET.")
+
+
+def delete_task(request):
+    '''Deletes a task from the Task Table.'''
+    if request.method == 'GET':
+        # Getting the task_id from AJAX
+        task_id = request.GET['task_id']
+        # Selecting the task with the given task_id
+        del_task = Task.objects.get(id=task_id)
+        # Deleting the task from the Table
+        del_task.delete()
+
+        return HttpResponse("Deleted the Task")
     else:
         return HttpResponse("Request method is not GET.")

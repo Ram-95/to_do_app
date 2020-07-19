@@ -21,7 +21,7 @@
 		<tr>
 			<td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="{{ task.id }}"></td>
 			<td colspan="2"><h4 align="left" id="title{{ task.id }}">{{ task.task_title }} ({{ task.author }})</h4></td>
-			<td><button class="btn btn-side deleterow" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td>
+			<td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td>
 		</tr>
 		{% endif %}
 	{% endfor %}

@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 	$(document).on("click", "#add-new-row", function() {
 		//$(this).parent().parent().remove();
-		var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td colspan="2"><span><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td></span><td><button class="btn btn-side" id="add_task_btn" title="Add Task" style="background-color: green;"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;<button title="Delete this Task" class="btn btn-side deleterow"><i class="fa fa-close"></i></button></td></tr>';
+		var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td colspan="2"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><button class="btn btn-side" id="add_task_btn" title="Add Task" style="background-color: green; float: left;"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;<button title="Delete this Task" style="float: right;" class="btn btn-side deleterow delete_new_row"><i class="fa fa-close"></i></button></td></tr>';
 		if($('.add_task').length == 0) {
     		$("#maintable").append(row);
 		}
@@ -19,9 +19,33 @@ $(document).ready(function(){
 
 
 	//Deletes the selected row
-	$(document).on("click", ".deleterow", function() {
-       $(this).parent().parent().remove();
-	});
+	$(document).on("click", ".delete_existing_row, .delete_new_row", function() {
+	    // If the delete button of new row is clicked, then delete that row
+	    if($(this).hasClass('delete_new_row')) {
+            $(this).parent().parent().remove();
+        }
+        // If the delete button of existing row is clicked, Delete that task from DB and delete if from table as well
+        else {
+            // Gets the ID of the Task i.e Checkbox
+            var val = $(this).parent().parent().find('input').attr("id");
+            // AJAX Call - Will pass the task_id to be deleted to the delete_task view and upon success will remove the same from the Active task table
+            $.ajax(
+            {
+                type: "GET",
+                url: "/delete_task",
+                data: {
+                       task_id: val,
+                },
+                success: function()
+                {
+                    // Removes the selected task from the Table
+                    $("#"+val).parent().parent().remove();
+
+                }
+            })
+        }
+      });
+
 
 	/* Adding a New Task to the Database and show the same in the Active Task Table */
 	$("table").on('click', "#add_task_btn", function() {
@@ -47,7 +71,7 @@ $(document).ready(function(){
                     $("#add_task_btn").parent().parent().remove();
 
                     //Add the added task to the Active Tasks Table
-                    var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                    var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
                     $('#maintable').append(row);
                 }
             })
@@ -110,7 +134,7 @@ $(document).ready(function(){
                     //Remove from the Completed Table
                     $("#"+un_check_id).parent().parent().remove();
                     //Append to the Active Table
-                    var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                    var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
                     $('#maintable').append(row);
                 }
            })
