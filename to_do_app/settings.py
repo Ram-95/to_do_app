@@ -127,3 +127,6 @@ STATIC_URL = '/static/'
 
 # Will tell crispy forms to use Bootstrap 4 CSS Template
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# This will navigate to the Homepage when a User Logs in. Django Default - will navigate to /profile/ of the User.
+LOGIN_REDIRECT_URL = 'tasks'

@@ -4,24 +4,32 @@ from .models import Task
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
+# To use login_required decorator
+from django.contrib.auth.decorators import login_required
 
-user = User.objects.first()
 
+def index(request):
+    '''The firstpage of Application.'''
+    return render(request, 'to_do_app/index.html')
 
-def home(request):
+@login_required
+def tasks(request):
+    # Gets the Currently Logged In user
+    current_user = request.user
+    # print(f'Current User: {current_user.username}')
     context = {
         # Shows the tasks of a particular User
         # 'tasks': user.task_set.all()
         # Shows all the tasks from the DB
-        'tasks': Task.objects.all()
+        'tasks': current_user.task_set.all()
     }
-    return render(request, 'to_do_app/home.html', context)
+    return render(request, 'to_do_app/tasks.html', context)
 
 
 def test(request):
     return render(request, 'to_do_app/test.html')
 
-
+@login_required
 def move_tasks(request):
     ''' Function to move the tasks from Active Table to Complete Table and vice-versa. '''
     if request.method == 'GET':
@@ -51,14 +59,14 @@ def move_tasks(request):
     else:
         return HttpResponse("Request method is not GET.")
 
-
+@login_required
 def add_new_task(request):
     '''Adds a New Task to the Task Table in Database.'''
     if request.method == 'GET':
         # Getting the task Name from Ajax
         task_name = request.GET['task_title']
         # Dummy User - for the purpose of testing
-        creator = User.objects.last()
+        creator = request.user
         # Adding the task to the Database Table - Task
         temp_task = Task(task_title=task_name, author=creator)
         # Saving the changes to the Database
@@ -73,7 +81,7 @@ def add_new_task(request):
     else:
         return HttpResponse("Request method is not GET.")
 
-
+@login_required
 def delete_task(request):
     '''Deletes a task from the Task Table.'''
     if request.method == 'GET':
@@ -88,7 +96,7 @@ def delete_task(request):
     else:
         return HttpResponse("Request method is not GET.")
 
-
+@login_required
 def delete_all_completed_tasks(request):
     '''Deletes all the Completed tasks from the Completed Table'''
     if request.method == 'GET':

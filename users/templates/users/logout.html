@@ -1,0 +1,12 @@
+{% extends "to_do_app/base.html" %}
+{% block content %}
+
+<div class="container auth-section">
+    <h2>You have been Logged out successfully.</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

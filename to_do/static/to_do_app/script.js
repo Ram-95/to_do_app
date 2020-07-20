@@ -44,7 +44,7 @@ $(document).ready(function(){
         // Checks if the Number of rows in Completed Table. If less than or equal to 2 then alerts the user with appropriate message
         // Else Deletes all the Completed Tasks
         if($('#completed-table tr').length <= 2) {
-            alert('No Complete Tasks to Clear!');
+            alert('No Completed Tasks to Clear!');
         }
         else
         {

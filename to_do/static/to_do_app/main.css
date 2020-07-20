@@ -34,9 +34,10 @@ max-width: 100%;
 }
 
 .main-container {
-    text-align: center;
-    width: max-content;
-    max-width: fit-content;
+    /*text-align: center;*/
+    margin-top: 8%;
+    line-height: 1.5;
+
 }
 
 .title-header {
@@ -57,10 +58,19 @@ max-width: 100%;
   cursor: pointer;
 }
 
-.content-section {
-    align-content: center;
-    line-height: 1.5;
-    margin-top: 15px;
-    width: 45%;
-    max-width: 100%;
+.profile-container {
+    margin-top: 10%;
+}
+
+.bg-indigo {
+    background-color: indigo;
+}
+
+.list-container {
+    text-align: center;
+    width: 70%;
+}
+
+.auth-section {
+    width: 60%;
 }

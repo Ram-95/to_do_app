@@ -1,8 +1,7 @@
 {% extends "to_do_app/base.html" %}
 {% block content %}
-<div class="container" style="text-align: center;">
-<br>
-<div class="container main-container">
+
+<div class="container list-container">
 
 	<table class= "table table-hover" id="maintable">
 	<thead class="thead-dark">
@@ -20,7 +19,7 @@
 		{% if not task.is_checked %}
 		<tr>
 			<td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="{{ task.id }}"></td>
-			<td colspan="2"><h4 align="left" id="title{{ task.id }}">{{ task.task_title }} ({{ task.author }})</h4></td>
+			<td colspan="2"><h4 align="left" id="title{{ task.id }}">{{ task.task_title }}</h4></td>
 			<td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td>
 		</tr>
 		{% endif %}
@@ -45,7 +44,7 @@
 		{% if task.is_checked %}
 		<tr>
 			<td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="{{ task.id }}" checked></td>
-			<td><h4 align="left" class="completed_tasks" id="title{{ task.id }}">{{ task.task_title }} ({{ task.author }})</h4></td>
+			<td><h4 align="left" class="completed_tasks" id="title{{ task.id }}">{{ task.task_title }}</h4></td>
 			<td class="button-row"></td>
 		</tr>
 		{% endif %}
@@ -55,5 +54,5 @@
 	</table>
 
 </div>
-</div>
+
 {% endblock content %}

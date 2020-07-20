@@ -1,5 +1,4 @@
 {% extends "to_do_app/base.html" %}
-{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 
@@ -7,17 +6,17 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Join Today</legend>
-            <!-- Uses Crispy Forms -->
+            <legend class="border-bottom mb-4">Log In</legend>
+            <!-- Using Crispy Forms -->
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            <button class="btn btn-outline-info" type="submit">Login</button>
         </div>
     </form>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already Have an Account? <a class="ml-1" href="{% url 'login' %}"">Sign In</a>
+            Need an Account? <a class="ml-1" href="{% url 'register' %}">Sign Up</a> Here
         </small>
     </div>
 </div>

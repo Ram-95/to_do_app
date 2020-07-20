@@ -24,10 +24,34 @@
 
 </head>
 <body>
-<div class="container main-header">
-	<h1 class="title-header"><strong>To-Do App</strong></h1>
-	</div>
+<header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-indigo fixed-top">
+      <div class="container">
+          <a class="navbar-brand mr-4 font-weight-bold" href="{% url 'index' %}" style="font-size: 38px;">To-Do App</a>
 
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+
+    <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar nav mr-auto">
+            {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'profile' %}" style="color: white;" title="View Profile"><strong>{{ user.username }}</strong></a>
+                <a class="nav-item nav-link" href="{% url 'tasks' %}" style="color: white;">My Tasks</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: white;">Logout</a>
+            {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}" style="color: white;">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}" style="color: white;">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+</nav>
+</header>
+
+
+<main role="main" class="container main-container">
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -36,6 +60,6 @@
         {% endfor %}
     {% endif %}
         {% block content %}{% endblock %}
-
+</main>
 </body>
 </html>
