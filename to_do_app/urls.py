@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# Importing the Views of users app for routing purpose
+from users import views as user_views
 
 
 urlpatterns = [
-    #Path to the Home Page - Loads the home() from to_do.urls
+    # Home Page - By default, loading the To-Do List
     path('', include('to_do.urls')),
     path('admin/', admin.site.urls),
+    # Routing to User Registration Page
+    path('register/', user_views.register, name='register')
 ]

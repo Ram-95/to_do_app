@@ -31,7 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Our To-Do App
     'to_do.apps.ToDoConfig',
+    # Our Users App - Registration, Login etc.,
+    'users.apps.UsersConfig',
+    # Crispy Forms - Since it is an installed app, we have to include it here
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,3 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Will tell crispy forms to use Bootstrap 4 CSS Template
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -27,6 +27,15 @@
 <div class="container main-header">
 	<h1 class="title-header"><strong>To-Do App</strong></h1>
 	</div>
-    {% block content %}{% endblock %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        {% block content %}{% endblock %}
+
 </body>
 </html>
