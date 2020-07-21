@@ -125,8 +125,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# This is the Directory where the Uploaded images are kept on the File System
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Will tell crispy forms to use Bootstrap 4 CSS Template
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # This will navigate to the Homepage when a User Logs in. Django Default - will navigate to /profile/ of the User.
 LOGIN_REDIRECT_URL = 'tasks'
+LOGIN_URL = 'login'
+

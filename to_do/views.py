@@ -2,17 +2,16 @@ from django.shortcuts import render
 # Imports our 'Task' Model(Table) - i.e, Our Table in the Database
 from .models import Task
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
-# To use login_required decorator
-from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    '''The firstpage of Application.'''
+    '''The first page of Application.'''
     return render(request, 'to_do_app/index.html')
 
-@login_required
+@csrf_exempt
 def tasks(request):
     # Gets the Currently Logged In user
     current_user = request.user
@@ -29,14 +28,14 @@ def tasks(request):
 def test(request):
     return render(request, 'to_do_app/test.html')
 
-@login_required
+@csrf_exempt
 def move_tasks(request):
     ''' Function to move the tasks from Active Table to Complete Table and vice-versa. '''
-    if request.method == 'GET':
+    if request.method == 'POST':
         # Gets the Task's ID from the checkbox that is clicked
-        task_id = request.GET['task_id']
+        task_id = request.POST['task_id']
         # Gets the Task's Class name from the checkbox that is clicked
-        task_class = request.GET['task_class']
+        task_class = request.POST['task_class']
         # If the Clicked Task is an Active Task - Move it from Active Table to Complete Table
         if 'mark_as_done' in task_class:
             # Select the Task whose id matches with task_id
@@ -59,12 +58,12 @@ def move_tasks(request):
     else:
         return HttpResponse("Request method is not GET.")
 
-@login_required
+@csrf_exempt
 def add_new_task(request):
     '''Adds a New Task to the Task Table in Database.'''
-    if request.method == 'GET':
+    if request.method == 'POST':
         # Getting the task Name from Ajax
-        task_name = request.GET['task_title']
+        task_name = request.POST['task_title']
         # Dummy User - for the purpose of testing
         creator = request.user
         # Adding the task to the Database Table - Task
@@ -81,12 +80,13 @@ def add_new_task(request):
     else:
         return HttpResponse("Request method is not GET.")
 
-@login_required
+# Using csrf_exempt decorator - To tell the view not to check the csrf_token.
+@csrf_exempt
 def delete_task(request):
     '''Deletes a task from the Task Table.'''
-    if request.method == 'GET':
+    if request.method == 'POST':
         # Getting the task_id from AJAX
-        task_id = request.GET['task_id']
+        task_id = request.POST['task_id']
         # Selecting the task with the given task_id
         del_task = Task.objects.get(id=task_id)
         # Deleting the task from the Table
@@ -94,12 +94,12 @@ def delete_task(request):
         print(f'Deleted the Task with ID: {task_id}')
         return HttpResponse("Deleted the Task")
     else:
-        return HttpResponse("Request method is not GET.")
+        return HttpResponse("Request method is not POST.")
 
-@login_required
+@csrf_exempt
 def delete_all_completed_tasks(request):
     '''Deletes all the Completed tasks from the Completed Table'''
-    if request.method == 'GET':
+    if request.method == 'POST':
         # Getting the Tasks that are Marked as Completed - i.e, Tasks that have is_checked == 1
         del_tasks = Task.objects.filter(is_checked=1)
         # Deleting the Completed Tasks
@@ -107,4 +107,4 @@ def delete_all_completed_tasks(request):
         print('Deleted all Completed Tasks')
         return HttpResponse("Successfully Deleted all Completed Tasks")
     else:
-        return HttpResponse("Request is not GET.")
+        return HttpResponse("Request is not POSt.")

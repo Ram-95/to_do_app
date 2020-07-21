@@ -35,7 +35,7 @@ max-width: 100%;
 
 .main-container {
     /*text-align: center;*/
-    margin-top: 8%;
+    margin-top: 10%;
     line-height: 1.5;
 
 }
@@ -66,11 +66,21 @@ max-width: 100%;
     background-color: indigo;
 }
 
-.list-container {
+#list-container {
     text-align: center;
     width: 70%;
 }
 
 .auth-section {
     width: 60%;
+}
+
+.account-img {
+    width: 200px;
+    height: 200px;
+    margin-right: 3%;
+}
+
+.media {
+    align-items: center;
 }

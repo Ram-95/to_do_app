@@ -9,6 +9,11 @@ $(document).ready(function(){
 	});
 
 
+    /* Refreshes the Page after every AJAX Call Success */
+    $(document).ajaxStop(function(){
+        window.location.reload();
+    });
+
 
 	/* Deletes the selected row */
 	$(document).on("click", ".delete_existing_row, .delete_new_row", function() {
@@ -23,20 +28,21 @@ $(document).ready(function(){
             // AJAX Call - Will pass the task_id to be deleted to the delete_task view and upon success will remove the same from the Active task table
             $.ajax(
             {
-                type: "GET",
-                url: "/delete_task",
+                type: "POST",
+                url: "/delete_task/",
                 data: {
                        task_id: val,
                 },
                 success: function()
                 {
                     // Removes the selected task from the Table
-                    $("#"+val).parent().parent().remove();
+                    //$("#"+val).parent().parent().remove();
 
                 }
             })
         }
       });
+
 
 
     /* Deletes all the Completed Tasks */
@@ -50,7 +56,7 @@ $(document).ready(function(){
         {
                $.ajax(
                {
-                   type: "GET",
+                   type: "POST",
                    url: "/delete_all_completed_tasks",
                    data:{},
                    success: function()
@@ -71,8 +77,8 @@ $(document).ready(function(){
 	    if (task_name != "") {
             $.ajax(
             {
-                type: "GET",
-                url: "/add_new_task",
+                type: "POST",
+                url: "/add_new_task/",
                 data: {
                         task_title: task_name,
                 },
@@ -111,9 +117,9 @@ $(document).ready(function(){
            $.ajax(
            {
                 // Method of sending the Data.
-                type: "GET",
+                type: "POST",
                 // URL to which the Data should be sent to.
-                url: "/move_tasks",
+                url: "/move_tasks/",
                 // Data - We're sending the selected Task's ID and CLASS Name to the URL.
                 data: {
                         task_id: check_id,
@@ -139,8 +145,8 @@ $(document).ready(function(){
            //alert('Task is: ' + task_name);
            $.ajax(
            {
-                type: "GET",
-                url: "/move_tasks",
+                type: "POST",
+                url: "/move_tasks/",
                 data: {
                         task_id: un_check_id,
                         task_class: class_name
