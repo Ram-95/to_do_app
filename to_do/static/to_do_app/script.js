@@ -2,17 +2,50 @@ $(document).ready(function(){
 
 	/* Adds a New Row to the Table */
 	$(document).on("click", "#add-new-row", function() {
-		var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input" id="exampleCheck"></td><td colspan="2"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><button class="btn btn-side" id="add_task_btn" title="Save" style="background-color: green; float: left;"><i class="fa fa-save"></i></button>&nbsp;&nbsp;<button title="Delete this Task" style="float: right;" class="btn btn-side deleterow delete_new_row"><i class="fa fa-close"></i></button></td></tr>';
+		var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><button class="btn btn-side" id="add_task_btn" title="Save" style="background-color: green; float: left;"><i class="fa fa-save"></i></button><button title="Delete this Task" style="float: right;" class="btn btn-side deleterow delete_new_row"><i class="fa fa-close"></i></button></td></tr>';
 		if($('.add_task').length == 0) {
-    		$("#maintable").append(row);
+		    // Append the new row to the tbody of the table and not the Table.
+    		$("#maintable > tbody").append(row);
 		}
 	});
 
+    /* Refreshes the Content of Tables when any AJAX Call is Successful */
+    function refreshData() {
+        $.ajax(
+        {
+            type: 'POST',
+            url: '/refresh_data/',
+            success: function()
+            {
+                 /* Refreshes both the tables with new Data we got by AJAX Calls */
+                 $( "#maintable" ).load(window.location.href + " #maintable" );
+                 //console.log('MainTable Refresh Complete');
+                 $( "#completed-table" ).load(window.location.href + " #completed-table" );
+                 //console.log('Completed Table Refresh Complete');
 
-    /* Refreshes the Page after every AJAX Call Success */
-    $(document).ajaxStop(function(){
-        window.location.reload();
-    });
+
+                 /*
+                data = jQuery.parseJSON(response);
+                // Removes all the rows from table except the first row
+                $("#maintable").find("tr:gt(1)").remove();
+                $("#completed-table").find("tr:gt(1)").remove();
+                for(var i=0; i < data.length; i++){
+                    if(data[i].fields.is_checked == false) {
+                        var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + data[i].pk +'"></td><td colspan="2"><h4 align="left" id="title' + data[i].pk +'">'+ data[i].fields.task_title +'</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                        //console.log(data[i].pk, data[i].fields.task_title, data[i].fields.is_checked);
+                        $('#maintable').append(row);
+                    }
+                    else {
+                        var row = '<tr><td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="' + data[i].pk +'" checked></td><td><h4 align="left" class="completed_tasks" id="title' + data[i].pk + '">' + data[i].fields.task_title +'</h4></td><td class="button-row"></td></tr>';
+                        console.log(data[i].pk, data[i].fields.task_title, data[i].fields.is_checked);
+                        $('#completed-table').append(row);
+                    }
+                }
+
+                */
+            }
+        });
+    }
 
 
 	/* Deletes the selected row */
@@ -30,6 +63,7 @@ $(document).ready(function(){
             {
                 type: "POST",
                 url: "/delete_task/",
+                cache: false,
                 data: {
                        task_id: val,
                 },
@@ -37,10 +71,12 @@ $(document).ready(function(){
                 {
                     // Removes the selected task from the Table
                     //$("#"+val).parent().parent().remove();
+                    refreshData();
 
                 }
-            })
+            });
         }
+
       });
 
 
@@ -57,12 +93,13 @@ $(document).ready(function(){
                $.ajax(
                {
                    type: "POST",
-                   url: "/delete_all_completed_tasks",
+                   url: "/delete_all_completed_tasks/",
                    data:{},
                    success: function()
                    {
                         // Removes all the rows from table except the first row
-                        $("#completed-table").find("tr:gt(1)").remove();
+                        //$("#completed-table").find("tr:gt(1)").remove();
+                        refreshData();
                    }
                })
         }
@@ -90,11 +127,12 @@ $(document).ready(function(){
                     task_name = data.task_title;
 
                     //Remove the current row
-                    $("#add_task_btn").parent().parent().remove();
+                    //$("#add_task_btn").parent().parent().remove();
 
                     //Add the added task to the Active Tasks Table
-                    var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
-                    $('#maintable').append(row);
+                    //var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                    //$('#maintable').append(row);
+                    refreshData();
                 }
             })
         }
@@ -128,10 +166,11 @@ $(document).ready(function(){
                 success: function()
                 {
                     //Remove from the Active Table
-                    $("#"+check_id).parent().parent().remove();
+                    //$("#"+check_id).parent().parent().remove();
                     //Append to the Complete Table
-                    var row = '<tr><td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="'+ check_id +'" checked></td><td><h4 align="left" id="title'+ check_id + '" class="completed_tasks">'+ task_name + '</h4></td><td class="button-row"></td></tr>';
-                    $('#completed-table').append(row);
+                    //var row = '<tr><td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="'+ check_id +'" checked></td><td><h4 align="left" id="title'+ check_id + '" class="completed_tasks">'+ task_name + '</h4></td><td class="button-row"></td></tr>';
+                    //$('#completed-table').append(row);
+                    refreshData();
 
                 }
            })
@@ -154,10 +193,11 @@ $(document).ready(function(){
                 success: function()
                 {
                     //Remove from the Completed Table
-                    $("#"+un_check_id).parent().parent().remove();
+                    //$("#"+un_check_id).parent().parent().remove();
                     //Append to the Active Table
-                    var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
-                    $('#maintable').append(row);
+                    //var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                    //$('#maintable').append(row);
+                    refreshData();
                 }
            })
         }

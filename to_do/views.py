@@ -1,6 +1,7 @@
 from django.shortcuts import render
 # Imports our 'Task' Model(Table) - i.e, Our Table in the Database
 from .models import Task
+from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
@@ -107,4 +108,16 @@ def delete_all_completed_tasks(request):
         print('Deleted all Completed Tasks')
         return HttpResponse("Successfully Deleted all Completed Tasks")
     else:
-        return HttpResponse("Request is not POSt.")
+        return HttpResponse("Request is not POST.")
+
+
+@csrf_exempt
+def refresh_data(request):
+    '''Returns the Updated Data in JSON format to the AJAX Call as Response.'''
+    if request.method == 'POST':
+        data = serializers.serialize('json', request.user.task_set.all())
+        print('Data Refresh Request Received')
+        #return JsonResponse(data, safe=False)
+        return HttpResponse('Data Refresh Successful.')
+    else:
+        return HttpResponse('Request method is not POST')

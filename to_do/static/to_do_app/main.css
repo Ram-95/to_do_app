@@ -13,7 +13,7 @@ max-width: 100%;
 }
 
 .form-control {
-	max-width: 105%;
+	max-width: 100%;
 }
 
 .button-row {
@@ -68,7 +68,7 @@ max-width: 100%;
 
 #list-container {
     text-align: center;
-    width: 70%;
+    width: 90%;
 }
 
 .auth-section {
@@ -83,4 +83,8 @@ max-width: 100%;
 
 .media {
     align-items: center;
+}
+
+.add_task {
+    font-size: 20px;
 }
