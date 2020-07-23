@@ -40,10 +40,7 @@ $(document).ready(function(){
                 },
                 success: function()
                 {
-                    // Removes the selected task from the Table
-                    //$("#"+val).parent().parent().remove();
                     refreshData();
-
                 }
             });
         }
@@ -68,8 +65,6 @@ $(document).ready(function(){
                    data:{},
                    success: function()
                    {
-                        // Removes all the rows from table except the first row
-                        //$("#completed-table").find("tr:gt(1)").remove();
                         refreshData();
                    }
                })
