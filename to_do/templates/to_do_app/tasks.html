@@ -43,8 +43,8 @@
 	{% for task in tasks %}
 		{% if task.is_checked %}
 		<tr>
-			<td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="{{ task.id }}" checked></td>
-			<td><h4 align="left" class="completed_tasks" id="title{{ task.id }}">{{ task.task_title }}</h4></td>
+			<td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="{{ task.pk }}" checked></td>
+			<td><h4 align="left" class="completed_tasks" id="title{{ task.pk }}">{{ task.task_title }}</h4></td>
 			<td class="button-row"></td>
 		</tr>
 		{% endif %}

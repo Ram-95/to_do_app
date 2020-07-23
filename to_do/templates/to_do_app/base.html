@@ -7,44 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{%  static 'to_do_app/favicon.png' %}">
-    <!-- Link to FontAwesome Icons CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     {% if title %}
         <title>To-Do App - {{ title }}</title>
     {% else %}
         <title>To-Do App</title>
     {% endif %}
+
     <!-- JQuery and AJAX CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- Link to JavaScript File  -->
     <script type="text/javascript" src="{% static 'to_do_app/script.js' %}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Popper.js and JS for Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Link to FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Link to Css File -->
     <link rel="stylesheet" type="text/css" href="{% static 'to_do_app/main.css' %}">
+
 
 </head>
 <body>
 <header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-indigo fixed-top">
-      <div class="container">
-          <a class="navbar-brand mr-4 font-weight-bold" href="{% url 'index' %}" style="font-size: 38px;">To-Do App</a>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-      </div>
+      <a class="navbar-brand font-weight-bold" href="{% url 'index' %}" style="font-size: 38px;">To-Do App</a>
 
-    <div class="collapse navbar-collapse" id="navbarToggle">
-        <div class="navbar nav mr-auto">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <!-- Navigation Bar Right side -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'profile' %}" style="color: white;" title="View Profile"><strong>{{ user.username }}</strong></a>
-                <a class="nav-item nav-link" href="{% url 'tasks' %}" style="color: white;">My Tasks</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: white;">Logout</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}" style="color: white;" title="View Profile">
+                        <img class="rounded-circle" width="30" height="30" src="{{ user.profile.image.url }}">
+                        <strong>{{ user.username }}</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tasks' %}" style="color: white;">My Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}" style="color: white;">Logout</a>
+                </li>
             {% else %}
-                <a class="nav-item nav-link" href="{% url 'login' %}" style="color: white;">Login</a>
-                <a class="nav-item nav-link" href="{% url 'register' %}" style="color: white;">Register</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" style="color: white;">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}" style="color: white;">Register</a>
+                </li>
             {% endif %}
-        </div>
+            </ul>
     </div>
 
 </nav>

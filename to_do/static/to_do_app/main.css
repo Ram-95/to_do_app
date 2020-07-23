@@ -1,5 +1,6 @@
 body {
 max-width: 100%;
+margin-top: 5rem;
 }
 
 .table td {
@@ -34,10 +35,9 @@ max-width: 100%;
 }
 
 .main-container {
-    /*text-align: center;*/
-    margin-top: 10%;
-    line-height: 1.5;
-
+  margin-top: 100px;
+  padding: 10px 10px;
+  margin-bottom: 20px;
 }
 
 .title-header {

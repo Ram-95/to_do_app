@@ -11,40 +11,11 @@ $(document).ready(function(){
 
     /* Refreshes the Content of Tables when any AJAX Call is Successful */
     function refreshData() {
-        $.ajax(
-        {
-            type: 'POST',
-            url: '/refresh_data/',
-            success: function()
-            {
-                 /* Refreshes both the tables with new Data we got by AJAX Calls */
-                 $( "#maintable" ).load(window.location.href + " #maintable" );
-                 //console.log('MainTable Refresh Complete');
-                 $( "#completed-table" ).load(window.location.href + " #completed-table" );
-                 //console.log('Completed Table Refresh Complete');
-
-
-                 /*
-                data = jQuery.parseJSON(response);
-                // Removes all the rows from table except the first row
-                $("#maintable").find("tr:gt(1)").remove();
-                $("#completed-table").find("tr:gt(1)").remove();
-                for(var i=0; i < data.length; i++){
-                    if(data[i].fields.is_checked == false) {
-                        var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + data[i].pk +'"></td><td colspan="2"><h4 align="left" id="title' + data[i].pk +'">'+ data[i].fields.task_title +'</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
-                        //console.log(data[i].pk, data[i].fields.task_title, data[i].fields.is_checked);
-                        $('#maintable').append(row);
-                    }
-                    else {
-                        var row = '<tr><td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="' + data[i].pk +'" checked></td><td><h4 align="left" class="completed_tasks" id="title' + data[i].pk + '">' + data[i].fields.task_title +'</h4></td><td class="button-row"></td></tr>';
-                        console.log(data[i].pk, data[i].fields.task_title, data[i].fields.is_checked);
-                        $('#completed-table').append(row);
-                    }
-                }
-
-                */
-            }
-        });
+         /* Refreshes both the tables with new Data we got by AJAX Calls */
+         $( "#maintable" ).load(window.location.href + " #maintable" );
+         //console.log('MainTable Refresh Complete');
+         $( "#completed-table" ).load(window.location.href + " #completed-table" );
+         //console.log('Completed Table Refresh Complete');
     }
 
 
