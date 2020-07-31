@@ -99,3 +99,8 @@ table>table {
     width: 80%;
     margin: auto;
 }
+
+.fa {
+    cursor: pointer;
+    font-size: 30px;
+}

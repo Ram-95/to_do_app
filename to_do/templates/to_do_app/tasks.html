@@ -24,15 +24,25 @@
 				<td colspan="2">
 					<h4 align="left" id="title{{ task.id }}">{{ task.task_title }}</h4>
 				</td>
-				<td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task"
+				<td>
+					<!--
+					<button class="btn btn-side update_btns" id="update_task_btn_{{ task.id }}" title="Update"
+						style="background-color:#1b73c7; display: none;"><i
+							class="fa fa-pencil-square-o"></i></button> -->
+					<i class="fa fa-pencil-square-o update_btns" title="Update" style='color:#0ba8c1;'></i>
+					<i class="fa fa-close deleterow delete_existing_row" title="Delete this Task"
+						style='color:red; float:right;'></i>
+					<!--
+					<button class="btn btn-side deleterow delete_existing_row" title="Delete this Task"
 						style="float: right;"><i class="fa fa-close"></i></button></td>
+						-->
 			</tr>
 			{% endif %}
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<table class="table" id="completed-table">
+	<table class="table mt-3" id="completed-table">
 		<thead class="thead-green">
 			<th colspan=4>
 				<h3>Completed Tasks</h3>

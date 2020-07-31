@@ -15,8 +15,8 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             # Acknowledges the User that the Account is created Successfully
-            messages.success(
-                request, f"Hey {username}, Your account has been created successfully. You can login now.")
+            # messages.success(request, f"Hey {username}, Your account has been created successfully. You can login now.")
+            messages.add_message(request, messages.SUCCESS, f"Hey {username}, Your account has been created successfully. You can login now.")
             # Upon Successfully registering the User, redirect to login page
             return redirect('login')
 
@@ -36,8 +36,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             # Acknowledges the User that the Account is Updated Successfully
-            messages.success(
-                request, f"Your account has been Updated successfully")
+            messages.add_message(request, messages.INFO, f"Your details have been saved succesfully.")
             # Redirect the User to his Profile
             return redirect('profile')
     else:

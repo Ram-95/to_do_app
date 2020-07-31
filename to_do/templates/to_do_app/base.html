@@ -53,16 +53,17 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}" style="color: white;" title="View Profile">
-                            <img class="rounded-circle" width="30" height="30" src="{{ user.profile.image.url }}">
+                        <a class="nav-link" href="{% url 'profile' %}" style="color: rgb(240, 229, 85);"
+                            title="View Profile">
+                            <img class="rounded-circle" width="28" height="28" src="{{ user.profile.image.url }}">
                             <strong>{{ user.username }}</strong>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tasks' %}" style="color: white;">My Tasks</a>
+                        <a class="nav-link" href="{% url 'tasks' %}" style="color: white;"><strong>My Tasks</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}" style="color: white;">Logout</a>
+                        <a class="nav-link" href="{% url 'logout' %}" style="color: white;"><strong>Logout</strong></a>
                     </li>
                     {% else %}
                     <li class="nav-item">
