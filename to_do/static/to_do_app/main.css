@@ -1,29 +1,29 @@
 body {
-max-width: 100%;
-margin-top: 5rem;
+    max-width: 100%;
+    margin-top: 5rem;
+
 }
 
 .table td {
     padding-left: 20px;
 }
 
-
-.form-check-input{
-	width: 28px;
-	height: 28px;
+.form-check-input {
+    width: 28px;
+    height: 28px;
 }
 
 .form-control {
-	max-width: 100%;
+    max-width: 100%;
 }
 
 .button-row {
-	text-align: right;
+    text-align: right;
 }
 
 .completed_tasks {
-	color: red;
-	text-decoration: line-through;
+    color: red;
+    text-decoration: line-through;
 }
 
 .main-header {
@@ -35,9 +35,10 @@ margin-top: 5rem;
 }
 
 .main-container {
-  margin-top: 100px;
-  padding: 10px 10px;
-  margin-bottom: 20px;
+    margin-top: 100px;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    
 }
 
 .title-header {
@@ -49,13 +50,13 @@ margin-top: 5rem;
 }
 
 .btn-side {
-  background-color: #dc3545;
-  border: none;
-  border-radius: 10%;
-  color: white;
-  padding: none;
-  font-size: 18px;
-  cursor: pointer;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 10%;
+    color: white;
+    padding: none;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .profile-container {
@@ -68,7 +69,9 @@ margin-top: 5rem;
 
 #list-container {
     text-align: center;
+    padding: 20px;
     width: 90%;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .auth-section {
@@ -83,8 +86,17 @@ margin-top: 5rem;
 
 .media {
     align-items: center;
+    width: auto;
+    background-color: cornsilk;
+    border: 2px solid gray;
+    padding: 8px
 }
 
 .add_task {
     font-size: 20px;
+}
+
+
+table > table {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- Required meta tags -->
@@ -9,9 +10,9 @@
     <link rel="shortcut icon" href="{%  static 'to_do_app/favicon.png' %}">
 
     {% if title %}
-        <title>To-Do App - {{ title }}</title>
+    <title>To-Do App - {{ title }}</title>
     {% else %}
-        <title>To-Do App</title>
+    <title>To-Do App</title>
     {% endif %}
 
     <!-- JQuery and AJAX CDN -->
@@ -19,7 +20,8 @@
 
     <!-- Link to JavaScript File  -->
     <script type="text/javascript" src="{% static 'to_do_app/script.js' %}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Popper.js and JS for Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -33,56 +35,58 @@
 
 
 </head>
+
 <body>
-<header class="site-header">
-  <nav class="navbar navbar-expand-md navbar-dark bg-indigo fixed-top">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-indigo fixed-top">
 
-      <a class="navbar-brand font-weight-bold" href="{% url 'index' %}" style="font-size: 38px;">To-Do App</a>
+            <a class="navbar-brand font-weight-bold" href="{% url 'index' %}" style="font-size: 38px;">To-Do App</a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-      </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- Navigation Bar Right side -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}" style="color: white;" title="View Profile">
-                        <img class="rounded-circle" width="30" height="30" src="{{ user.profile.image.url }}">
-                        <strong>{{ user.username }}</strong>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'tasks' %}" style="color: white;">My Tasks</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}" style="color: white;">Logout</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}" style="color: white;">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}" style="color: white;">Register</a>
-                </li>
-            {% endif %}
-            </ul>
-    </div>
-
-</nav>
-</header>
-
-
-<main role="main" class=" mt-6 container main-container">
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
+            <!-- Navigation Bar Right side -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}" style="color: white;" title="View Profile">
+                            <img class="rounded-circle" width="30" height="30" src="{{ user.profile.image.url }}">
+                            <strong>{{ user.username }}</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tasks' %}" style="color: white;">My Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}" style="color: white;">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" style="color: white;">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}" style="color: white;">Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
+
+        </nav>
+    </header>
+
+
+    <main role="main" class=" mt-6 container main-container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
         {% endfor %}
-    {% endif %}
+        {% endif %}
         {% block content %}{% endblock %}
-</main>
+    </main>
 </body>
+
 </html>

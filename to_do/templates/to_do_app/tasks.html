@@ -3,53 +3,62 @@
 
 <div class="container" id="list-container">
 
-	<table class= "table table-hover" id="maintable">
-	<thead class="thead-dark">
-		<th colspan=4>
-			<h2>Active Tasks</h2>
-		</th>
-	</thead>
-	<tbody>
-	<tr>
-		<td colspan=4>
-		<button type="button" class="btn btn-success" id="add-new-row" title="Add a New Task"><strong>Add New Task</strong></button>
-		</td>
-	</tr>
-	{% for task in tasks %}
-		{% if not task.is_checked %}
-		<tr>
-			<td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="{{ task.id }}"></td>
-			<td colspan="2"><h4 align="left" id="title{{ task.id }}">{{ task.task_title }}</h4></td>
-			<td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td>
-		</tr>
-		{% endif %}
-	{% endfor %}
-	</tbody>
+	<table class="table table-hover" id="maintable">
+		<thead class="thead-dark">
+			<th colspan=4>
+				<h2>Active Tasks</h2>
+			</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan=4>
+					<button type="button" class="btn btn-success" id="add-new-row" title="Add a New Task"><strong>Add
+							New Task</strong></button>
+				</td>
+			</tr>
+			{% for task in tasks %}
+			{% if not task.is_checked %}
+			<tr>
+				<td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done"
+						id="{{ task.id }}"></td>
+				<td colspan="2">
+					<h4 align="left" id="title{{ task.id }}">{{ task.task_title }}</h4>
+				</td>
+				<td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task"
+						style="float: right;"><i class="fa fa-close"></i></button></td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+		</tbody>
 	</table>
-	
-	<table class= "table" id="completed-table">
-	<thead class="thead-green">
-		<th colspan=4>
-			<h3>Completed Tasks</h3>
-		</th>
-	</thead>
-	<tbody>
-	<tr>
-		<td colspan=4>
-		<button type="button" class="btn btn-danger" id="clear_all_completed_tasks"><strong>Clear All Completed Tasks</strong></button>
-		</td>
-	</tr>
-	{% for task in tasks %}
-		{% if task.is_checked %}
-		<tr>
-			<td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="{{ task.pk }}" checked></td>
-			<td><h4 align="left" class="completed_tasks" id="title{{ task.pk }}">{{ task.task_title }}</h4></td>
-			<td class="button-row"></td>
-		</tr>
-		{% endif %}
-	{% endfor %}
 
-	</tbody>
+	<table class="table" id="completed-table">
+		<thead class="thead-green">
+			<th colspan=4>
+				<h3>Completed Tasks</h3>
+			</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan=4>
+					<button type="button" class="btn btn-danger" id="clear_all_completed_tasks"><strong>Clear All
+							Completed Tasks</strong></button>
+				</td>
+			</tr>
+			{% for task in tasks %}
+			{% if task.is_checked %}
+			<tr>
+				<td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone"
+						id="{{ task.pk }}" checked></td>
+				<td>
+					<h4 align="left" class="completed_tasks" id="title{{ task.pk }}">{{ task.task_title }}</h4>
+				</td>
+				<td class="button-row"></td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+
+		</tbody>
 	</table>
 
 </div>
