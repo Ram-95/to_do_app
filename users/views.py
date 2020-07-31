@@ -17,7 +17,7 @@ def register(request):
             # Acknowledges the User that the Account is created Successfully
             messages.success(
                 request, f"Hey {username}, Your account has been created successfully. You can login now.")
-            # Upon Successfully registering the User, redirect to the same 'register.html' page
+            # Upon Successfully registering the User, redirect to login page
             return redirect('login')
 
     else:
@@ -29,6 +29,7 @@ def register(request):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
+        print(request.user.username)
         p_form = ProfileUpdateForm(
             request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
@@ -37,7 +38,7 @@ def profile(request):
             # Acknowledges the User that the Account is Updated Successfully
             messages.success(
                 request, f"Your account has been Updated successfully")
-                # Redirect the User to his Profile
+            # Redirect the User to his Profile
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)

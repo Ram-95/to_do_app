@@ -9,6 +9,13 @@ $(document).ready(function(){
 		}
 	});
 
+    /* Script to fadeout flash messages after 5 seconds */
+    window.setTimeout(function() {
+          $(".alert").fadeTo(500, 0).slideUp(500, function(){
+              $(this).remove();
+          });
+        }, 5000);
+    
     /* Refreshes the Content of Tables when any AJAX Call is Successful */
     function refreshData() {
          /* Refreshes both the tables with new Data we got by AJAX Calls */

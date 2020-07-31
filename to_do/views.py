@@ -6,6 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
+from django.contrib import messages
 
 
 def index(request):

@@ -12,8 +12,8 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
     # Method to scale the Uploaded images to our defined resolution - 300 x 300
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
