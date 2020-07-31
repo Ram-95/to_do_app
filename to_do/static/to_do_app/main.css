@@ -79,17 +79,14 @@ body {
 }
 
 .account-img {
-    width: 200px;
-    height: 200px;
-    margin-right: 3%;
+    width: 150px;    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .media {
     align-items: center;
-    width: auto;
-    background-color: cornsilk;
-    border: 2px solid gray;
-    padding: 8px
+    background-color: rgb(248, 247, 240);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .add_task {
@@ -100,3 +97,4 @@ body {
 table > table {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+

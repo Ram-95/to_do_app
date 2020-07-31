@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from . forms import UserRegisterForm
+from . forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 # To use login_required decorator
 from django.contrib.auth.decorators import login_required
 
@@ -15,7 +15,8 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             # Acknowledges the User that the Account is created Successfully
-            messages.success(request, f"Your account has been created successfully. You can login now.")
+            messages.success(
+                request, f"Hey {username}, Your account has been created successfully. You can login now.")
             # Upon Successfully registering the User, redirect to the same 'register.html' page
             return redirect('login')
 
@@ -26,4 +27,25 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            # Acknowledges the User that the Account is Updated Successfully
+            messages.success(
+                request, f"Your account has been Updated successfully")
+                # Redirect the User to his Profile
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'users/profile.html', context)
