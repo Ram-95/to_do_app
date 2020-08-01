@@ -17,30 +17,34 @@ $(document).ready(function () {
     }, 5000);
 
 
-
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
     $(document).on("click", ".update_btns", function () {
-        //$(this).parent().parent().find('td:eq(1)').attr('contenteditable', 'true');
-        // Getting the task ID from the Button ID
-        var task_id = $(this).parent().parent().find('input').attr("id");
-        /* Use this and Do the Edit and Save Buttons: http://jsfiddle.net/j08691/JbZnf/2/ */
+        var upd_task = $(this).parent().parent().find('h4').text();
+        var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task + '" autofocus>';
+        $(this).parent().parent().find('td:eq(1)').html(edit_field);
+        $(this).hide();
+        $(this).siblings('#update_task_btn').show();
+    });
 
-        var upd_task = $(this).parent().parent().find('h4').text()
-
-        //alert(upd_task);
+    $(document).on("click", "#update_task_btn", function () {
+        $(this).hide()
+        $(this).siblings('.update_btns').show();
+        var upd_data = $(this).parent().parent().find('td:eq(1)').find('input').val();
+        var upd_id = $(this).parent().parent().find('td:eq(0)').find('input').attr('id');
         $.ajax({
             type: 'POST',
             url: '/update_task/',
             cache: false,
             data: {
-                task_id: task_id,
-                task_name: upd_task,
+                task_id: upd_id,
+                task_name: upd_data,
             },
             success: function () {
                 refreshData();
             }
         });
-
+        var upd_field = '<h4 align="left" id="title"' + upd_id + '">' + upd_data + '</h4>';
+        $(this).parent().parent().find('td:eq(1)').html(upd_field);
     });
 
 
