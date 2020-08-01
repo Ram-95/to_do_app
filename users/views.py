@@ -16,7 +16,8 @@ def register(request):
             username = form.cleaned_data.get('username')
             # Acknowledges the User that the Account is created Successfully
             # messages.success(request, f"Hey {username}, Your account has been created successfully. You can login now.")
-            messages.add_message(request, messages.SUCCESS, f"Hey {username}, Your account has been created successfully. You can login now.")
+            messages.add_message(
+                request, messages.SUCCESS, f"Hey {username}, Your account has been created successfully. You can login now.")
             # Upon Successfully registering the User, redirect to login page
             return redirect('login')
 
@@ -27,16 +28,22 @@ def register(request):
 
 @login_required
 def profile(request):
+    return render(request, 'users/profile.html')
+
+
+@login_required
+def edit_profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        print(request.user.username)
+        # print(request.user.username)
         p_form = ProfileUpdateForm(
             request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             # Acknowledges the User that the Account is Updated Successfully
-            messages.add_message(request, messages.INFO, f"Your details have been saved succesfully.")
+            messages.add_message(request, messages.INFO,
+                                 f"Your details have been saved succesfully.")
             # Redirect the User to his Profile
             return redirect('profile')
     else:
@@ -48,4 +55,4 @@ def profile(request):
         'p_form': p_form
     }
 
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/edit_profile.html', context)

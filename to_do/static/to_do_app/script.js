@@ -27,7 +27,7 @@ $(document).ready(function () {
 
         var upd_task = $(this).parent().parent().find('h4').text()
 
-        alert(upd_task);
+        //alert(upd_task);
         $.ajax({
             type: 'POST',
             url: '/update_task/',
