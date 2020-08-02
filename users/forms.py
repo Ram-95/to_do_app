@@ -33,6 +33,7 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
+
 # Notify the User when he tries to Reset Password with Incorrect Email
 class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
