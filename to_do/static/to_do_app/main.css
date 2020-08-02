@@ -106,3 +106,18 @@ table>table {
     cursor: pointer;
     font-size: 30px;
 }
+
+.homepage_title {
+    color: white;
+    font-size: 65px;
+}
+
+.homepage_div {
+    background-image: url("https://image.shutterstock.com/image-illustration/website-element-blue-bubbles-page-260nw-1177725427.jpg");
+    background-size: cover;
+}
+
+.tag_line {
+    color: white;
+    font-size: 18px;
+}

@@ -55,6 +55,7 @@ $(document).ready(function () {
         //console.log('MainTable Refresh Complete');
         $("#completed-table").load(window.location.href + " #completed-table");
         //console.log('Completed Table Refresh Complete');
+
     }
 
 
@@ -103,7 +104,7 @@ $(document).ready(function () {
                     success: function () {
                         refreshData();
                     }
-                })
+                });
         }
     });
 
@@ -173,8 +174,10 @@ $(document).ready(function () {
                         //$('#completed-table').append(row);
                         refreshData();
 
+
                     }
                 })
+
         }
         else {
             //Script to Move the Tasks from Complete Table to Active Table
@@ -198,8 +201,10 @@ $(document).ready(function () {
                         //var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
                         //$('#maintable').append(row);
                         refreshData();
+
                     }
                 })
+
         }
 
     });
