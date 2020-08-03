@@ -20,4 +20,4 @@ $ python manage.py createsuperuser
 ```
 
 ### Below is the screenshot of the Application
-<img src="https://raw.githubusercontent.com/Ram-95/to_do_app/master/Tasks.JPG" width="960" height="680">
+<img src="https://raw.githubusercontent.com/Ram-95/to_do_app/master/Tasks.JPG" width="960" height="690">
