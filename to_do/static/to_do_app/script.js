@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    //Variable that stores the ID of the current active editable task
+    var active_edit_task_id = null;
+    var active_edit_task = null;
+
     /* Adds a New Row to the Table */
     $(document).on("click", "#add-new-row", function () {
         var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><i class="fa fa-check" id="add_task_btn" title="Save" style="color: green;"></i><i class="fa fa-close deleterow delete_new_row" title="Delete this Task" style="color:red; float:right;"></i></td></tr>';
@@ -19,14 +23,32 @@ $(document).ready(function () {
 
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
     $(document).on("click", ".update_btns", function () {
+        /*
+        if (active_edit_task_id == null) {
+            active_edit_task_id = $(this).parent().parent().find('input').attr('id');
+            active_edit_task = $('#title' + active_edit_task_id).text();
+        }
+        else {
+            alert(active_edit_task);
+            var edit_field_prev = '<h4 align="left" id="title"' + active_edit_task_id + '">' + active_edit_task + '</h4>';
+            //alert(edit_field);
+            $('#' + active_edit_task_id).parent().find('td:eq(1)').html(edit_field_prev);
+            $('#' + active_edit_task_id).parent().parent().find('.update_task_btn').hide();
+            $('#' + active_edit_task_id).parent().parent().find('.update_btns').show();
+            active_edit_task_id = $(this).parent().parent().find('input').attr('id');
+            active_edit_task = $('#title' + active_edit_task_id).text();
+
+        }
+        */
         var upd_task = $(this).parent().parent().find('h4').text();
+        //alert($(this).parent().parent().find('input').attr('id'));
         var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task + '" autofocus>';
         $(this).parent().parent().find('td:eq(1)').html(edit_field);
         $(this).hide();
-        $(this).siblings('#update_task_btn').show();
+        $(this).siblings('.update_task_btn').show();
     });
 
-    $(document).on("click", "#update_task_btn", function () {
+    $(document).on("click", ".update_task_btn", function () {
         $(this).hide()
         $(this).siblings('.update_btns').show();
         var upd_data = $(this).parent().parent().find('td:eq(1)').find('input').val();
@@ -54,7 +76,7 @@ $(document).ready(function () {
         $("#maintable").load(window.location.href + " #maintable");
         //console.log('MainTable Refresh Complete');
         $("#completed-table").load(window.location.href + " #completed-table");
-        //console.log('Completed Table Refresh Complete');
+        //console.log('Completed Table Refresh Complete');    
 
     }
 
