@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    $("#tag_line").fadeIn("slow");
     //Variable that stores the ID of the current active editable task
     var active_edit_task_id = null;
     var active_edit_task = null;
