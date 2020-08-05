@@ -11,21 +11,25 @@ from . models import Profile
 
 class UserRegisterForm(UserCreationForm):
     # Adding a email field in the User Register Form
+    first_name = forms.CharField(max_length=15)
+    last_name = forms.CharField(max_length=15)
     email = forms.EmailField()
 
     class Meta:
         '''This class tells to which model our form data should be submitted. In this case - User Model'''
         model = User
         # The data from these fields is stored in the User Model.
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=15)
+    last_name = forms.CharField(max_length=15)
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['first_name', 'last_name', 'email']
 
 
 class ProfileUpdateForm(forms.ModelForm):

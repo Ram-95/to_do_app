@@ -9,6 +9,7 @@ from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 def index(request):
@@ -31,8 +32,16 @@ def tasks(request):
     return render(request, 'to_do_app/tasks.html', context)
 
 
-# Using Class based view - ListView
+'''
+This is the way to add decorators to Class Based Views
+More Info - https://docs.djangoproject.com/en/3.1/topics/class-based-views/intro/#decorating-the-class
+'''
+decorators = [csrf_exempt, login_required]
+
+
+@method_decorator(decorators, name='dispatch')
 class TaskListView(ListView):
+    ''' Using Class based view - ListView '''
     model = Task
     template_name = 'to_do_app/tasks.html'  # <app_name>/<model>_<viewtype>.html
     context_object_name = 'tasks'
@@ -47,7 +56,7 @@ def test(request):
     return render(request, 'to_do_app/test.html')
 
 
-@csrf_exempt
+@login_required
 def move_tasks(request):
     ''' Function to move the tasks from Active Table to Complete Table and vice-versa. '''
     if request.method == 'POST':
@@ -78,7 +87,7 @@ def move_tasks(request):
         return HttpResponse("Request method is not GET.")
 
 
-@csrf_exempt
+@login_required
 def add_new_task(request):
     '''Adds a New Task to the Task Table in Database.'''
     if request.method == 'POST':
@@ -104,7 +113,7 @@ def add_new_task(request):
 # Using csrf_exempt decorator - To tell the view not to check the csrf_token.
 
 
-@csrf_exempt
+@login_required
 def delete_task(request):
     '''Deletes a task from the Task Table.'''
     if request.method == 'POST':
@@ -120,7 +129,7 @@ def delete_task(request):
         return HttpResponse("Request method is not POST.")
 
 
-@csrf_exempt
+@login_required
 def delete_all_completed_tasks(request):
     '''Deletes all the Completed tasks from the Completed Table'''
     if request.method == 'POST':
@@ -134,7 +143,7 @@ def delete_all_completed_tasks(request):
         return HttpResponse("Request is not POST.")
 
 
-@csrf_exempt
+@login_required
 def update_task(request):
     '''Updates the task'''
     if request.method == 'POST':

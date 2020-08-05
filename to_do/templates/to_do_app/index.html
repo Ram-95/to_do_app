@@ -4,14 +4,18 @@
     <h1 class="homepage_title">Welcome to <span style="color: rgb(233, 241, 107); font-weight: bold;">#To-Do</span> App
     </h1>
     <div id="tag_line">
-    <small class="tag_line">#All your tasks at one place</small>
+        <small class="tag_line">#All your tasks at one place</small>
     </div>
 </div>
+
 <div class=" text-center mt-5">
     <div class="btn-group">
-        <a class="m-auto" href="{% url 'login' %}"><button
-                class="btn btn-success homepage_buttons">Login</button></a>&nbsp;
-        <a class="ml-3" href="{% url 'register' %}"><button class="btn btn-info homepage_buttons">Sign Up</button></a>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'login' %}"><button class="btn btn-success homepage_buttons m-auto">Login</button></a>&nbsp;
+        <a href="{% url 'register' %}"><button class="btn btn-info homepage_buttons ml-3">Sign Up</button></a>
+        {% else %}
+        <a class="ml-3" href="{% url 'tasks' %}"><button class="btn btn_my_tasks">Go to My Tasks</button></a>
     </div>
 </div>
+{% endif %}
 {% endblock content %}

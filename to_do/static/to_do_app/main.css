@@ -135,3 +135,15 @@ table>table {
 #tag_line {
     display: none;
 }
+
+.btn_my_tasks {
+    color: white;
+    background-color: darkblue;
+    border-radius: 20px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.btn_my_tasks:hover {
+    color: rgba(233, 236, 15, 0.979);
+}

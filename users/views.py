@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.template import RequestContext
 from . forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 # To use login_required decorator
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 
 def register(request):
@@ -13,11 +15,12 @@ def register(request):
         if form.is_valid():
             # Saves the Data to the Database. I.e creates the User
             form.save()
-            username = form.cleaned_data.get('username')
+            # username = form.cleaned_data.get('username')
+            fname = form.cleaned_data.get('first_name')
             # Acknowledges the User that the Account is created Successfully
             # messages.success(request, f"Hey {username}, Your account has been created successfully. You can login now.")
             messages.add_message(
-                request, messages.SUCCESS, f"Hey {username}, Your account has been created successfully. You can login now.")
+                request, messages.SUCCESS, f"Hey {fname}, Your account has been created successfully. You can login now.")
             # Upon Successfully registering the User, redirect to login page
             return redirect('login')
 
@@ -56,3 +59,5 @@ def edit_profile(request):
     }
 
     return render(request, 'users/edit_profile.html', context)
+
+
