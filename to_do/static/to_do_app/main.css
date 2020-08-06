@@ -71,6 +71,7 @@ body {
     padding: 20px;
     width: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: table;
 }
 
 .auth-section {
@@ -114,13 +115,12 @@ table>table {
 }
 
 .homepage_div {
-    /*background-image: url("https://image.shutterstock.com/image-illustration/website-element-blue-bubbles-page-260nw-1177725427.jpg");*/
     background-color: #312b2b;
     background-size: cover;
 }
 
 .tag_line {
-    color: #f59d8e;
+    color: rgb(233, 241, 107);
     font-size: 18px;
     font-family: cursive;
 }

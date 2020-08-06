@@ -1,8 +1,7 @@
 $(document).ready(function () {
     $("#tag_line").fadeIn("slow");
-    //Variable that stores the ID of the current active editable task
-    var active_edit_task_id = null;
-    var active_edit_task = null;
+    //Global variable that stores the task name before editing
+    var upd_task_prev;
 
     /* Adds a New Row to the Table */
     $(document).on("click", "#add-new-row", function () {
@@ -20,7 +19,7 @@ $(document).ready(function () {
         });
     }, 5000);
 
-    
+
     /* Refreshes the Content of Tables when any AJAX Call is Successful */
     function refreshData() {
         /* Refreshes both the tables with new Data we got by AJAX Calls */
@@ -32,9 +31,10 @@ $(document).ready(function () {
 
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
     $(document).on("click", ".update_btns", function () {
-        var upd_task = $(this).parent().parent().find('h4').text();
-        //alert($(this).parent().parent().find('input').attr('id'));
-        var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task + '" autofocus>';
+        // Storing the previous taskname in the upd_task_prev global variable
+        upd_task_prev = $(this).parent().parent().find('h4').text();
+        // Turning the task field to an input field with its current value
+        var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task_prev + '" autofocus>';
         $(this).parent().parent().find('td:eq(1)').html(edit_field);
         $(this).hide();
         $(this).siblings('.update_task_btn').show();
@@ -43,22 +43,38 @@ $(document).ready(function () {
     $(document).on("click", ".update_task_btn", function () {
         $(this).hide()
         $(this).siblings('.update_btns').show();
-        var upd_data = $(this).parent().parent().find('td:eq(1)').find('input').val();
+        // Getting the new task name
+        var upd_task_current = $(this).parent().parent().find('td:eq(1)').find('input').val();
+        // Getting the edited task id
         var upd_id = $(this).parent().parent().find('td:eq(0)').find('input').attr('id');
-        $.ajax({
-            type: 'POST',
-            url: '/update_task/',
-            cache: false,
-            data: {
-                task_id: upd_id,
-                task_name: upd_data,
-            },
-            success: function () {
-                var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_data + '</h4>';
-                $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
+        /* 
+        If the previous task is same as the current task. Do not sent any Ajax request to backend.
+        Just update that table data with the previous/current task name.
+        Else, send the ajax request and update that data with the newly updated task name.
+        */
+        if (upd_task_current == upd_task_prev) {
+            //alert('Equal');
+            var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_current + '</h4>';
+            $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
+        }
+        else {
+            //alert('Not Equal. Sending Ajax request');
 
-            }
-        });
+            $.ajax({
+                type: 'POST',
+                url: '/update_task/',
+                cache: false,
+                data: {
+                    task_id: upd_id,
+                    task_name: upd_task_current,
+                },
+                success: function () {
+                    var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_current + '</h4>';
+                    $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
+
+                }
+            });
+        }
     });
 
 
