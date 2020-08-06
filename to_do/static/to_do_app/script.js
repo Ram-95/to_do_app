@@ -20,26 +20,18 @@ $(document).ready(function () {
         });
     }, 5000);
 
+    
+    /* Refreshes the Content of Tables when any AJAX Call is Successful */
+    function refreshData() {
+        /* Refreshes both the tables with new Data we got by AJAX Calls */
+        $("#maintable").load(window.location.href + " #maintable");
+        console.log('MainTable Refresh Complete');
+        $("#completed-table").load(window.location.href + " #completed-table");
+    }
+
 
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
     $(document).on("click", ".update_btns", function () {
-        /*
-        if (active_edit_task_id == null) {
-            active_edit_task_id = $(this).parent().parent().find('input').attr('id');
-            active_edit_task = $('#title' + active_edit_task_id).text();
-        }
-        else {
-            alert(active_edit_task);
-            var edit_field_prev = '<h4 align="left" id="title"' + active_edit_task_id + '">' + active_edit_task + '</h4>';
-            //alert(edit_field);
-            $('#' + active_edit_task_id).parent().find('td:eq(1)').html(edit_field_prev);
-            $('#' + active_edit_task_id).parent().parent().find('.update_task_btn').hide();
-            $('#' + active_edit_task_id).parent().parent().find('.update_btns').show();
-            active_edit_task_id = $(this).parent().parent().find('input').attr('id');
-            active_edit_task = $('#title' + active_edit_task_id).text();
-
-        }
-        */
         var upd_task = $(this).parent().parent().find('h4').text();
         //alert($(this).parent().parent().find('input').attr('id'));
         var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task + '" autofocus>';
@@ -62,23 +54,12 @@ $(document).ready(function () {
                 task_name: upd_data,
             },
             success: function () {
-                refreshData();
+                var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_data + '</h4>';
+                $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
+
             }
         });
-        var upd_field = '<h4 align="left" id="title"' + upd_id + '">' + upd_data + '</h4>';
-        $(this).parent().parent().find('td:eq(1)').html(upd_field);
     });
-
-
-    /* Refreshes the Content of Tables when any AJAX Call is Successful */
-    function refreshData() {
-        /* Refreshes both the tables with new Data we got by AJAX Calls */
-        $("#maintable").load(window.location.href + " #maintable");
-        //console.log('MainTable Refresh Complete');
-        $("#completed-table").load(window.location.href + " #completed-table");
-        //console.log('Completed Table Refresh Complete');    
-
-    }
 
 
     /* Deletes the selected row */

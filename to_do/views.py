@@ -56,6 +56,7 @@ def test(request):
     return render(request, 'to_do_app/test.html')
 
 
+@csrf_exempt
 @login_required
 def move_tasks(request):
     ''' Function to move the tasks from Active Table to Complete Table and vice-versa. '''
@@ -87,6 +88,7 @@ def move_tasks(request):
         return HttpResponse("Request method is not GET.")
 
 
+@csrf_exempt
 @login_required
 def add_new_task(request):
     '''Adds a New Task to the Task Table in Database.'''
@@ -113,6 +115,7 @@ def add_new_task(request):
 # Using csrf_exempt decorator - To tell the view not to check the csrf_token.
 
 
+@csrf_exempt
 @login_required
 def delete_task(request):
     '''Deletes a task from the Task Table.'''
@@ -129,6 +132,7 @@ def delete_task(request):
         return HttpResponse("Request method is not POST.")
 
 
+@csrf_exempt
 @login_required
 def delete_all_completed_tasks(request):
     '''Deletes all the Completed tasks from the Completed Table'''
@@ -143,6 +147,7 @@ def delete_all_completed_tasks(request):
         return HttpResponse("Request is not POST.")
 
 
+@csrf_exempt
 @login_required
 def update_task(request):
     '''Updates the task'''
@@ -158,7 +163,7 @@ def update_task(request):
         # Saving the changes to the Database
         changed_task.save()
         # For Debugging Purpose
-        print('Task Updated')
+        print(f'Task Updated ID: {task_id}')
         return HttpResponse("Successfully Updated Tasks")
     else:
         return HttpResponse('Request is not POST.')
