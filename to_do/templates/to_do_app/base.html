@@ -36,7 +36,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-indigo fixed-top">
             {% if user.is_authenticated %}
@@ -90,6 +90,9 @@
         {% endif %}
         {% block content %}{% endblock %}
     </main>
+    <footer class="mt-auto">
+        <p class="m-auto">&copy; 2020 - All Rights Reserved</p>
+    </footer>
 </body>
 
 </html>

@@ -133,7 +133,7 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # This will navigate to the Homepage when a User Logs in. Django Default - will navigate to /profile/ of the User.
-LOGIN_REDIRECT_URL = 'tasks'
+LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

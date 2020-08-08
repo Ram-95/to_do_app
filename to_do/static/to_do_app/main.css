@@ -1,6 +1,6 @@
 body {
     max-width: 100%;
-    margin-top: 5rem;
+    /*margin-top: 5rem;*/
 }
 
 .table td {
@@ -147,3 +147,10 @@ table>table {
 .btn_my_tasks:hover {
     color: rgba(233, 236, 15, 0.979);
 }
+
+footer {
+    padding: 8px;
+    background-color: #2f2d2d;
+    color: white;
+    text-align: center;
+ }
