@@ -72,6 +72,7 @@ body {
     width: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: table;
+    border-radius: 30px;
 }
 
 .auth-section {
@@ -153,4 +154,23 @@ footer {
     background-color: #2f2d2d;
     color: white;
     text-align: center;
+ }
+
+ .list_name {
+     color: white;
+     text-align: center;
+     font-weight: bold;
+ }
+
+ .list_name_div {
+    width: 90%;
+    padding: 5px;
+    background-color: darkcyan;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 30px;
+ }
+
+ .user_tasks {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  }

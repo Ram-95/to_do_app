@@ -1,7 +1,10 @@
 {% extends "to_do_app/base.html" %}
 {% block content %}
+<div class="container list_name_div">
+	<h2 class="list_name">To-Do List</h2>
+</div>
 
-<div class="container" id="list-container1">
+<div class="container mt-2" id="list-container1">
 
 	<table class="table table-hover" id="maintable">
 		<thead class="thead-dark">
@@ -20,7 +23,7 @@
 			{% for task in tasks %}
 			{% if not task.is_checked %}
 			<tr class="task_{{ task.id }}">
-				<td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done"
+				<td><input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done"
 						id="{{ task.id }}"></td>
 				<td colspan="2">
 					<h4 class="text-left" id="title{{ task.id }}">{{ task.task_title }}</h4>
@@ -58,7 +61,7 @@
 			<tr class="task_{{ task.id }}">
 				<td>
 
-					<input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone"
+					<input type="checkbox" title="Mark as Incomplete" class="form-check-input mark_as_undone"
 						id="{{ task.pk }}" checked></td>
 				<td>
 					<h4 class="text-left completed_tasks" id="title{{ task.pk }}">{{ task.task_title }}</h4>

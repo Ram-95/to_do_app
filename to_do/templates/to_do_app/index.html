@@ -14,7 +14,7 @@
         <a href="{% url 'login' %}"><button class="btn btn-success homepage_buttons m-auto">Login</button></a>&nbsp;
         <a href="{% url 'register' %}"><button class="btn btn-info homepage_buttons ml-3">Sign Up</button></a>
         {% else %}
-        <a class="ml-3" href="{% url 'tasks' %}"><button class="btn btn_my_tasks">Go to My Tasks</button></a>
+        <a class="ml-3" href="{% url 'tasks' %}"><button class="btn btn_my_tasks">Go to My Lists</button></a>
     </div>
 </div>
 {% endif %}

@@ -152,7 +152,7 @@ $(document).ready(function () {
                         //$("#add_task_btn").parent().parent().remove();
 
                         //Add the added task to the Active Tasks Table
-                        //var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                        //var row = '<tr><td><input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
                         //$('#maintable').append(row);
                         refreshData();
                     }
@@ -189,7 +189,7 @@ $(document).ready(function () {
                         //Remove from the Active Table
                         //$("#"+check_id).parent().parent().remove();
                         //Append to the Complete Table
-                        //var row = '<tr><td><input type="checkbox" title="Mark as Undone" class="form-check-input mark_as_undone" id="'+ check_id +'" checked></td><td><h4 align="left" id="title'+ check_id + '" class="completed_tasks">'+ task_name + '</h4></td><td class="button-row"></td></tr>';
+                        //var row = '<tr><td><input type="checkbox" title="Mark as Incomplete" class="form-check-input mark_as_undone" id="'+ check_id +'" checked></td><td><h4 align="left" id="title'+ check_id + '" class="completed_tasks">'+ task_name + '</h4></td><td class="button-row"></td></tr>';
                         //$('#completed-table').append(row);
                         refreshData();
 
@@ -217,7 +217,7 @@ $(document).ready(function () {
                         //Remove from the Completed Table
                         //$("#"+un_check_id).parent().parent().remove();
                         //Append to the Active Table
-                        //var row = '<tr><td><input type="checkbox" title="Mark as Done" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
+                        //var row = '<tr><td><input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done" id="' + un_check_id + '"></td><td colspan="2"><h4 align="left" id="title' + un_check_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
                         //$('#maintable').append(row);
                         refreshData();
 
