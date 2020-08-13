@@ -1,5 +1,5 @@
 # To_Do_App
-## A Basic To-Do Application using Django Framework
+## A Basic To-Do Web Application using Django Framework
 ### Features
 - User Authentication - Users can register, login and logout
 - Edit Tasks
