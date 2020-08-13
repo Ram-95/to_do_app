@@ -7,11 +7,12 @@
     <div class="media-body ml-4">
       <h3 class="account-heading">{{ user.username }}</h3>
       <p class="text-secondary">{{ user.email }}</p>
-      <a href="{% url 'edit_profile' %}"><button class="btn btn-danger" style="border-radius: 18px;">Edit Profile</button></a>
+      <a href="{% url 'edit_profile' %}"><button class="btn btn-danger" style="border-radius: 18px;">Edit
+          Profile</button></a>
     </div>
   </div>
   <div class="user_tasks media border row center-block d-flex justify-content-center pt-2 mt-3">
-    <h4>All the User Tasks go here...</h4>
-    </div>
+    <h4>All the User Lists go here...</h4>
+  </div>
 </div>
 {% endblock content %}

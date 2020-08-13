@@ -3,12 +3,23 @@ $(document).ready(function () {
     //Global variable that stores the task name before editing
     var upd_task_prev;
 
+    /* Refreshes the Content of Tables when any AJAX Call is Successful */
+    function refreshData() {
+        /* Refreshes both the tables with new Data we got by AJAX Calls */
+        $("#maintable").load(window.location.href + " #maintable");
+        //console.log('MainTable Refresh Complete');
+        $("#completed-table").load(window.location.href + " #completed-table");
+    }
+
     /* Adds a New Row to the Table */
     $(document).on("click", "#add-new-row", function () {
-        var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task" maxlength="60"></td><td><i class="fa fa-check" id="add_task_btn" title="Save" style="color: green;"></i><i class="fa fa-close deleterow delete_new_row" title="Delete this Task" style="color:red; float:right;"></i></td></tr>';
+        var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task (Max. 60 charcters)" maxlength="60"></td><td><i class="fa fa-check" id="add_task_btn" title="Save" style="color: green;"></i><i class="fa fa-close deleterow delete_new_row" title="Delete this Task" style="color:red; float:right;"></i></td></tr>';
+        //alert('Clicked!');
         if ($('.add_task').length == 0) {
             // Append the new row to the tbody of the table and not the Table.
+            //$("#maintable > tbody tr:first").after(row);
             $("#maintable > tbody").append(row);
+            //console.log('Length: ' + $('.add_task').length);
         }
     });
 
@@ -20,13 +31,7 @@ $(document).ready(function () {
     }, 5000);
 
 
-    /* Refreshes the Content of Tables when any AJAX Call is Successful */
-    function refreshData() {
-        /* Refreshes both the tables with new Data we got by AJAX Calls */
-        $("#maintable").load(window.location.href + " #maintable");
-        console.log('MainTable Refresh Complete');
-        $("#completed-table").load(window.location.href + " #completed-table");
-    }
+
 
 
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
