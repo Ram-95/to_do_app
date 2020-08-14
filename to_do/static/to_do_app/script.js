@@ -41,7 +41,7 @@ $(document).ready(function () {
         // Storing the previous taskname in the upd_task_prev global variable
         upd_task_prev = $(this).parent().parent().find('h4').text().trim();
         // Turning the task field to an input field with its current value
-        var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task_prev + '" autofocus>';
+        var edit_field = '<input type="text" name="task" style="float: left;" class="form-control" id= "add_task" maxlength="60" value="' + upd_task_prev + '" autofocus>';
         $(this).parent().parent().find('td:eq(1)').html(edit_field);
         $(this).hide();
         $(this).siblings('.update_task_btn').show();
