@@ -1,5 +1,6 @@
 {% extends "to_do_app/base.html" %}
 {% block content %}
+
 <div class="container list_name_div">
 	<h2 class="list_name">To-Do List</h2>
 </div>
@@ -15,9 +16,15 @@
 
 		<tbody>
 			<tr>
-				<td colspan=4>
-					<button type="button" class="btn btn-success" id="add-new-row" title="Add a New Task"><strong>Add
-							New Task</strong></button>
+				<td colspan=3>
+					<input type="text" name="task" style="float: left;" class="form-control" id="add_task"
+						placeholder="Enter your Task (Max. 60 characters)" maxlength="60" autofocus>
+				</td>
+				<td>
+					<button type="button" class="btn btn-success" id="add_task_btn"
+						title="Add a New Task"><strong>Add</strong></button>
+
+
 				</td>
 			</tr>
 			{% for task in tasks %}

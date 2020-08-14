@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#tag_line").fadeIn("slow");
     //Global variable that stores the task name before editing
     var upd_task_prev;
-    
+
 
     /* Refreshes the Content of Tables when any AJAX Call is Successful */
     function refreshData() {
@@ -12,17 +12,18 @@ $(document).ready(function () {
         $("#completed-table").load(window.location.href + " #completed-table");
     }
 
-    /* Adds a New Row to the Table */
+    /* Adds a New Row to the Table
     $(document).on("click", "#add-new-row", function () {
-        var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control add_task" placeholder="Enter your Task (Max. 60 charcters)" maxlength="60"></td><td><i class="fa fa-check" id="add_task_btn" title="Save" style="color: green;"></i><i class="fa fa-close deleterow delete_new_row" title="Delete this Task" style="color:red; float:right;"></i></td></tr>';
+        var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control" id="add_task" placeholder="Enter your Task (Max. 60 characters)" maxlength="60"></td><td><i class="fa fa-check" id="add_task_btn" title="Save" style="color: green;"></i><i class="fa fa-close deleterow delete_new_row" title="Delete this Task" style="color:red; float:right;"></i></td></tr>';
         //alert('Clicked!');
-        if ($('.add_task').length == 0) {
+        //if ($('#add_task').length == 0) {
             // Append the new row to the tbody of the table and not the Table.
-            //$("#maintable > tbody tr:first").after(row);
-            $("#maintable > tbody").append(row);
-            //console.log('Length: ' + $('.add_task').length);
-        }
+            $("#maintable > tbody tr:first").after(row);
+            //$("#maintable > tbody").append(row);
+            console.log('Length: ' + $('#add_task').length);
+        //}
     });
+    */
 
     /* Script to fadeout flash messages after 5 seconds */
     window.setTimeout(function () {
@@ -147,7 +148,7 @@ $(document).ready(function () {
     $("table").on('click', "#add_task_btn", function () {
         var task_name;
         // Getting the Task Name
-        task_name = $('.add_task').val();
+        task_name = $('#add_task').val();
         if (task_name != "") {
             $.ajax(
                 {

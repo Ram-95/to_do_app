@@ -90,7 +90,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.add_task {
+#add_task {
     font-size: 20px;
 }
 
@@ -173,4 +173,9 @@ footer {
 .user_tasks {
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#add_task_btn {
+    border-radius: 18px;
+    float: right;
 }

@@ -28,6 +28,7 @@ def tasks(request):
         # 'tasks': user.task_set.all()
         # Shows all the tasks from the DB
         'tasks': current_user.task_set.all()
+        
     }
     return render(request, 'to_do_app/tasks.html', context)
 
