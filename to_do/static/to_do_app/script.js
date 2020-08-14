@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#tag_line").fadeIn("slow");
     //Global variable that stores the task name before editing
     var upd_task_prev;
+    
 
     /* Refreshes the Content of Tables when any AJAX Call is Successful */
     function refreshData() {
@@ -37,7 +38,7 @@ $(document).ready(function () {
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
     $(document).on("click", ".update_btns", function () {
         // Storing the previous taskname in the upd_task_prev global variable
-        upd_task_prev = $(this).parent().parent().find('h4').text();
+        upd_task_prev = $(this).parent().parent().find('h4').text().trim();
         // Turning the task field to an input field with its current value
         var edit_field = '<input type="text" name="task" style="float: left;" class="form-control add_task" maxlength="60" value="' + upd_task_prev + '" autofocus>';
         $(this).parent().parent().find('td:eq(1)').html(edit_field);
@@ -49,7 +50,7 @@ $(document).ready(function () {
         $(this).hide()
         $(this).siblings('.update_btns').show();
         // Getting the new task name
-        var upd_task_current = $(this).parent().parent().find('td:eq(1)').find('input').val();
+        var upd_task_current = $(this).parent().parent().find('td:eq(1)').find('input').val().trim();
         // Getting the edited task id
         var upd_id = $(this).parent().parent().find('td:eq(0)').find('input').attr('id');
         /* 
@@ -57,28 +58,37 @@ $(document).ready(function () {
         Just update that table data with the previous/current task name.
         Else, send the ajax request and update that data with the newly updated task name.
         */
-        if (upd_task_current == upd_task_prev) {
+
+        if (upd_task_current == upd_task_prev && upd_task_current.length > 0) {
             //alert('Equal');
             var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_current + '</h4>';
             $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
         }
+
         else {
             //alert('Not Equal. Sending Ajax request');
+            if (upd_task_current.length == 0) {
+                alert('Task Name cannot be Empty!');
+                var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_prev + '</h4>';
+                $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
+            }
+            else {
+                //console.log('Sending AJAX Request.');
+                $.ajax({
+                    type: 'POST',
+                    url: '/update_task/',
+                    cache: false,
+                    data: {
+                        task_id: upd_id,
+                        task_name: upd_task_current,
+                    },
+                    success: function () {
+                        var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_current + '</h4>';
+                        $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
 
-            $.ajax({
-                type: 'POST',
-                url: '/update_task/',
-                cache: false,
-                data: {
-                    task_id: upd_id,
-                    task_name: upd_task_current,
-                },
-                success: function () {
-                    var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_current + '</h4>';
-                    $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
-
-                }
-            });
+                    }
+                });
+            }
         }
     });
 
