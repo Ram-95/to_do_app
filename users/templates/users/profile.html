@@ -1,18 +1,45 @@
 {% extends "to_do_app/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="content-section">
+<div class="container content-section">
   <div class="media border row center-block d-flex justify-content-center p-3">
     <img class="rounded-circle account-img img-responsive pull-left" src="{{ user.profile.image.url }}">
-    <div class="media-body ml-4">
+    <div class="container media-body m-auto">
       <h3 class="account-heading">{{ user.username }}</h3>
       <p class="text-secondary">{{ user.email }}</p>
       <a href="{% url 'edit_profile' %}"><button class="btn btn-danger" style="border-radius: 18px;">Edit
           Profile</button></a>
     </div>
   </div>
-  <div class="user_tasks media border row center-block d-flex justify-content-center pt-2 mt-3">
-    <h4>All the User Lists go here...</h4>
+  <div class="container user_tasks mt-3">
+    <h4 style="text-align:center; color: rgba(5, 0, 12, 0.692);"><u>My Tasks</u></h4>
+    
+    <div class="container row p-3 m-auto">
+      <div class="col-sm-5 col-xs-5 active_tasks_profile">
+        <p style="text-align: center;"><strong>Active Tasks</strong></p>
+        <ul>
+          {% for task in tasks %}
+          {% if not task.is_checked %}
+          <li>{{ task.task_title }}</li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-sm-2 col-xs-2"></div>
+      <br>
+      <div class="col-sm-5 col-xs-5 completed_tasks_profile">
+        <p style="text-align: center;"><strong>Completed Tasks</strong></p>
+        <ul>
+          {% for task in tasks %}
+          {% if task.is_checked %}
+          <li>{{ task.task_title }}</li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  
   </div>
+</div>
 </div>
 {% endblock content %}

@@ -31,7 +31,18 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    # Gets the Currently Logged In user
+    current_user = request.user
+    # print(f'Current User: {current_user.username}')
+    context = {
+        # Shows the tasks of a particular User
+        # 'tasks': user.task_set.all()
+        # Shows all the tasks from the DB
+        'tasks': current_user.task_set.all()
+        
+    }
+    
+    return render(request, 'users/profile.html', context)
 
 
 @login_required
