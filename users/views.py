@@ -5,6 +5,7 @@ from . forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 # To use login_required decorator
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from to_do.models import Task
 
 
 def register(request):
@@ -38,7 +39,9 @@ def profile(request):
         # Shows the tasks of a particular User
         # 'tasks': user.task_set.all()
         # Shows all the tasks from the DB
-        'tasks': current_user.task_set.all()
+        'tasks': current_user.task_set.all(),
+        'active_count': Task.objects.filter(author=current_user, is_checked=False).count(),
+        'completed_count': Task.objects.filter(author=current_user, is_checked=True).count()
         
     }
     

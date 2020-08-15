@@ -170,11 +170,9 @@ footer {
     border-radius: 30px;
 }
 
-/*
 .user_tasks {
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}*/
+    max-width: 100%;
+}
 
 #add_task_btn {
     border-radius: 18px;
@@ -197,4 +195,29 @@ footer {
 
 ul {
     padding-inline-start: 22px;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-check-input {
+        width: 24px;
+        height: 24px;
+    }
+    .text-left {
+        font-size: larger;
+    }
+    .fa {
+        font-size: 22px;
+    }
+    #add_task {
+        font-size: medium;
+    }
+    #list-container1, #list-container2 {
+        width: 100%;
+    }
+    .content-section {
+        width: 100%;
+    }
+    .media-body {
+        text-align: center;
+    }
 }

@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="content-section">
-  <div class="media border row p-2">
+  <div class="media border row center-block d-flex justify-content-center p-3">
     <img class="row-md-3 m-2 mr-3 rounded-circle account-img" src="{{ user.profile.image.url }}">
-    <div class="row-md-9 media-body">
+    <div class="container row-md-9 media-body">
       <h3 class="account-heading">{{ user.username }}</h3>
       <p class="text-secondary">{{ user.email }}</p>
     </div>
