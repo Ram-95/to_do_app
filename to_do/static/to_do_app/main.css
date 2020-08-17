@@ -1,11 +1,19 @@
 body {
     max-width: 100%;
-    /*margin-top: 5rem;*/
+}
+
+.main-container {
+    margin-top: 100px;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    
+    
+
 }
 
 .table td {
     padding-left: 20px;
-    background-color: beige;
+    background-color:beige;
 }
 
 .form-check-input {
@@ -34,11 +42,7 @@ body {
     padding: 14px;
 }
 
-.main-container {
-    margin-top: 100px;
-    padding: 10px 10px;
-    margin-bottom: 20px;
-}
+
 
 .title-header {
     text-align: center;
@@ -116,8 +120,7 @@ table>table {
 }
 
 .homepage_div {
-    background-color: #312b2b;
-    background-size: cover;
+    background-color: #0a0702c7;
 }
 
 .tag_line {
@@ -203,13 +206,13 @@ ul {
         height: 24px;
     }
     .text-left {
-        font-size: larger;
+        font-size: 17px;
     }
     .fa {
         font-size: 22px;
     }
     #add_task {
-        font-size: medium;
+        font-size: smaller;
     }
     #list-container1, #list-container2 {
         width: 100%;
@@ -220,4 +223,5 @@ ul {
     .media-body {
         text-align: center;
     }
+   
 }
