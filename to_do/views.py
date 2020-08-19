@@ -57,6 +57,13 @@ def test(request):
     return render(request, 'to_do_app/test.html')
 
 
+'''
+# API view - Shows all the Tasks in JSON Format
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+'''
+
 @csrf_exempt
 @login_required
 def move_tasks(request):

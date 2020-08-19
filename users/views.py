@@ -1,3 +1,7 @@
+from rest_framework import viewsets, generics
+# To Show "Not Found" when queryset returns None in API
+from rest_framework.exceptions import NotFound 
+from .serializers import ProfileSerializer, TaskSerializer
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.template import RequestContext
@@ -6,6 +10,27 @@ from . forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from to_do.models import Task
+from django.contrib.auth.models import User
+
+
+# API End Point - Shows all the Users data
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = ProfileSerializer
+
+
+# API End Point - Shows the task of a particular User
+class TaskViewSet(generics.ListAPIView):
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        uname = self.kwargs['username']
+        user = User.objects.filter(username=uname).first()
+        #print(f'{user.id}')
+        if user is not None:
+            return Task.objects.filter(author=user.id)
+        else:
+            raise NotFound()
 
 
 def register(request):

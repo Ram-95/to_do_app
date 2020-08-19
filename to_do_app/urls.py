@@ -19,9 +19,16 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 # Importing the Views of users app for routing purpose
 from users import views as user_views
+# To use routers in REST Framework
+from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 from users.forms import EmailValidationOnForgotPassword
+
+# Routes to the API Endpoint
+router = routers.SimpleRouter()
+router.register(r'profile_info', user_views.ProfileViewSet)
+#router.register(r'user_tasks', user_views.TaskViewSet)
 
 
 urlpatterns = [
@@ -45,6 +52,9 @@ urlpatterns = [
         template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('profile/', user_views.profile, name='profile'),
     path('edit_profile/', user_views.edit_profile, name='edit_profile'),
+    path('', include(router.urls)),
+    path('user_tasks/user=<username>/', user_views.TaskViewSet.as_view()),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
  
 ]
 
