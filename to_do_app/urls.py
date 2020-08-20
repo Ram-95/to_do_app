@@ -27,8 +27,6 @@ from users.forms import EmailValidationOnForgotPassword
 
 # Routes to the API Endpoint
 router = routers.SimpleRouter()
-#router.register(r'profile_info', user_views.ProfileViewSet)
-#router.register(r'user_tasks', user_views.TaskViewSet)
 
 
 urlpatterns = [
