@@ -19,7 +19,7 @@ python manage.py migrate
 ```
 $ python manage.py createsuperuser
 ```
-- API End Points
+### API End Points
 
   - To get the User information - ```http://localhost:8000/profile_info/user=<Username>/```
   
