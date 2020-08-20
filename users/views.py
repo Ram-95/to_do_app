@@ -14,9 +14,16 @@ from django.contrib.auth.models import User
 
 
 # API End Point - Shows all the Users data
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+class ProfileViewSet(generics.ListAPIView):
     serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        uname = self.kwargs['username']
+        user = User.objects.filter(username=uname).first()
+        if user is not None:
+            return User.objects.filter(username=user)
+        else:
+            raise NotFound()
 
 
 # API End Point - Shows the task of a particular User
