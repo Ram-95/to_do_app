@@ -20,8 +20,8 @@ python manage.py migrate
 $ python manage.py createsuperuser
 ```
 - API End Points
-    > To get the User information - ```http://localhost:8000/profile_info/user=<Username>/```
-    > To get the Tasks of a User - ```http://localhost:8000/user_tasks/user=<Username>/```
+  - To get the User information - ```http://localhost:8000/profile_info/user=<Username>/```
+  - To get the Tasks of a User - ```http://localhost:8000/user_tasks/user=<Username>/```
 
 ### Below is the screenshot of the Application
 <img src="https://raw.githubusercontent.com/Ram-95/to_do_app/master/Tasks.JPG" width="960" height="690">
