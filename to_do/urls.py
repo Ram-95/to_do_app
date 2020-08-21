@@ -19,6 +19,7 @@ urlpatterns = [
     path('delete_all_completed_tasks/', views.delete_all_completed_tasks,
          name='delete_all_completed_tasks'),
     path('update_task/', views.update_task, name='update_task'),
+    path('refresh_data/', views.refresh_data, name='refresh_data'),
     #path('', include(router.urls)),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

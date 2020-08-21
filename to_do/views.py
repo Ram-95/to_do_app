@@ -175,3 +175,17 @@ def update_task(request):
         return HttpResponse("Successfully Updated Tasks")
     else:
         return HttpResponse('Request is not POST.')
+
+
+@csrf_exempt
+@login_required
+def refresh_data(request):
+    '''Returns the updated data after every AJAX Call.'''
+    if request.method == 'POST':
+        user = request.user
+        data = serializers.serialize("json", user.task_set.all())
+        #print(data)
+        return JsonResponse(data, safe=False)
+    else:
+        return HttpResponse('Request Method is not POST.')
+

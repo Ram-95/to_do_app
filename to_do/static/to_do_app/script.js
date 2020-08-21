@@ -6,10 +6,68 @@ $(document).ready(function () {
 
     /* Refreshes the Content of Tables when any AJAX Call is Successful */
     function refreshData() {
-        /* Refreshes both the tables with new Data we got by AJAX Calls */
-        $("#maintable").load(window.location.href + " #maintable");
-        //console.log('MainTable Refresh Complete');
-        $("#completed-table").load(window.location.href + " #completed-table");
+        /* Method - 1: Makes an AJAX Request, gets the updated data in JSON format. Using the JSON data, updates the 
+        tables accordingly */
+        $.ajax({
+            type: 'POST',
+            url: '/refresh_data/',
+            cache: false,
+            success: function (data) {
+                // Removes all the rows except the first row from the Main Table
+                $('#maintable tbody').find("tr:gt(0)").remove();
+                // Removes all the rows except the first row from the Completed Table
+                $('#completed-table tbody').find("tr:gt(0)").remove();
+                // Parsing the JSON Data
+                response = JSON.parse(data)
+
+                // Resets the Add Task input field
+                $('#maintable tbody').find('tr:eq(0)').find('input').val("");
+
+                // Loading the tables using JSON data
+                for (var i = 0; i < response.length; i++) {
+                    var task_id = response[i].pk;
+                    var task_title = response[i].fields['task_title'];
+                    var is_checked = response[i].fields['is_checked'];
+                    //console.log('Id: ' + task_id + ' Name: ' + task_title);
+                    // Loading Active Tasks Table
+                    if (is_checked == false) {
+                        var active_row = `<tr class="task_` + task_id + `">
+				<td><input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done"
+						id="`+ task_id + `"></td>
+				<td colspan="2">
+					<h4 class="text-left" id="title'+ task_id +'">` + task_title + `</h4>
+				</td>
+				<td><i class="fa fa-pencil-square-o update_btns" title="Edit Task" style="color:#0ba8c1;"></i>
+					<i class="fa fa-check update_task_btn" title="Update"
+						style="color: rgb(16, 172, 211); display: none;"></i>
+					<i class="fa fa-close deleterow delete_existing_row" title="Delete Task"
+						style="color:red; float:right;"></i>
+			</tr>`;
+                        $('#maintable tbody').append(active_row);
+
+                    }
+                    // Loading Completed Tasks Table
+                    else {
+                        var completed_row = `<tr class="task_` + task_id + `">
+                    <td>
+    
+                        <input type="checkbox" title="Mark as Incomplete" class="form-check-input mark_as_undone"
+                            id="`+ task_id + `" checked></td>
+                    <td>
+                        <h4 class="text-left completed_tasks" id="title`+ task_id + `">` + task_title + `</h4>
+                    </td>
+                    <td class="button-row"></td>
+                </tr>`;
+                        $('#completed-table tbody').append(completed_row);
+
+                    }
+                }
+            }
+        });
+
+        /* Method - 2:  Refreshes both the tables using jQuery. NO AJAX Calls are made. */
+        //$("#maintable").load(window.location.href + " #maintable");
+        //$("#completed-table").load(window.location.href + " #completed-table");
     }
 
     /* Adds a New Row to the Table
@@ -31,9 +89,6 @@ $(document).ready(function () {
             $(this).remove();
         });
     }, 5000);
-
-
-
 
 
     /* Editing the Tasks and Updating the Task in the Database using Ajax */
@@ -61,7 +116,7 @@ $(document).ready(function () {
         */
 
         if (upd_task_current == upd_task_prev && upd_task_current.length > 0) {
-            //alert('Equal');
+            //alert('Equal. No AJAX request.');
             var upd_field = '<h4 align="left" id="title' + upd_id + '">' + upd_task_current + '</h4>';
             $('.task_' + upd_id).find('td:eq(1)').html(upd_field);
         }
