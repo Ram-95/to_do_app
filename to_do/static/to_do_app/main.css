@@ -6,14 +6,11 @@ body {
     margin-top: 100px;
     padding: 10px 10px;
     margin-bottom: 20px;
-    
-    
-
 }
 
 .table td {
     padding-left: 20px;
-    background-color:beige;
+    background-color: beige;
 }
 
 .form-check-input {
@@ -41,8 +38,6 @@ body {
     color: white;
     padding: 14px;
 }
-
-
 
 .title-header {
     text-align: center;
@@ -228,8 +223,7 @@ ul {
     .media-body {
         text-align: center;
     }
-   td:first-child {
-       padding-left: 24px;
-   }
-   
+    td:first-child {
+        padding-left: 24px;
+    }
 }

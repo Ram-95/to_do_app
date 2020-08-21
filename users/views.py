@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics
 # To Show "Not Found" when queryset returns None in API
-from rest_framework.exceptions import NotFound 
+from rest_framework.exceptions import NotFound
 from .serializers import ProfileSerializer, TaskSerializer
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -33,7 +33,7 @@ class TaskViewSet(generics.ListAPIView):
     def get_queryset(self):
         uname = self.kwargs['username']
         user = User.objects.filter(username=uname).first()
-        #print(f'{user.id}')
+        # print(f'{user.id}')
         if user is not None:
             return Task.objects.filter(author=user.id)
         else:
@@ -74,9 +74,9 @@ def profile(request):
         'tasks': current_user.task_set.all(),
         'active_count': Task.objects.filter(author=current_user, is_checked=False).count(),
         'completed_count': Task.objects.filter(author=current_user, is_checked=True).count()
-        
+
     }
-    
+
     return render(request, 'users/profile.html', context)
 
 

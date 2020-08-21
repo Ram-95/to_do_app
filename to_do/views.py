@@ -182,9 +182,11 @@ def update_task(request):
 def refresh_data(request):
     '''Returns the updated data after every AJAX Call.'''
     if request.method == 'POST':
+        # Getting the username of the User requested
         user = request.user
+        # Converting the user's tasks to JSON format
         data = serializers.serialize("json", user.task_set.all())
-        #print(data)
+        # Return the JSON string. Will work only if safe is set to 'False'
         return JsonResponse(data, safe=False)
     else:
         return HttpResponse('Request Method is not POST.')

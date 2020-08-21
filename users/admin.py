@@ -9,7 +9,7 @@ from django.utils.html import format_html
 class ProfileAdmin(admin.ModelAdmin):
     '''Overrides the details of Profile Model in Admin'''
     # Displays the User ID, User Name and the No.of Tasks of a User
-    list_display = ("user_id", "user", "view_tasks_link")
+    list_display = ("profile_id", "user_id", "user", "view_tasks_link")
     # Adding a Filter by Username
     list_filter = ("user",)
     # Adding a search functionality to Admin - Searches based on the first name of user
@@ -33,3 +33,8 @@ class ProfileAdmin(admin.ModelAdmin):
     def user_id(self, obj):
         '''Returns the User ID of the current profile'''
         return obj.user.id
+    
+    
+    def profile_id(self, obj):
+        '''Returns the Profile ID of the current profile'''
+        return obj.id

@@ -54,7 +54,7 @@ urlpatterns = [
     path('user_tasks/user=<username>/', user_views.TaskViewSet.as_view()),
     path('profile_info/user=<username>/', user_views.ProfileViewSet.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
- 
+
 ]
 
 
