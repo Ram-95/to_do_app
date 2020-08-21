@@ -226,4 +226,7 @@ ul {
     td:first-child {
         padding-left: 24px;
     }
+    .homepage_title {
+        font-size: 55px;
+    }
 }

@@ -59,7 +59,7 @@ def register(request):
 
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form, 'title': 'Register'})
 
 
 @login_required
@@ -73,7 +73,8 @@ def profile(request):
         # Shows all the tasks from the DB
         'tasks': current_user.task_set.all(),
         'active_count': Task.objects.filter(author=current_user, is_checked=False).count(),
-        'completed_count': Task.objects.filter(author=current_user, is_checked=True).count()
+        'completed_count': Task.objects.filter(author=current_user, is_checked=True).count(),
+        'title': current_user
 
     }
 
@@ -101,7 +102,8 @@ def edit_profile(request):
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'title': 'Edit Profile'
     }
 
     return render(request, 'users/edit_profile.html', context)

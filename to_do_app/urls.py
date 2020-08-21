@@ -39,7 +39,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     # Including a EmailValidationOnForgotPassword class from users/forms.py - That tells the user that the entered
-    # Password during password reset is incorrect(Not present in the system)
+    # email during password reset is not a registered email (Not present in the system).
     path('password-reset/', auth_views.PasswordResetView.as_view(
         form_class=EmailValidationOnForgotPassword, template_name='users/password_reset.html'), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(

@@ -46,6 +46,7 @@ class TaskListView(ListView):
     model = Task
     template_name = 'to_do_app/tasks.html'  # <app_name>/<model>_<viewtype>.html
     context_object_name = 'tasks'
+    
 
     def get_queryset(self):
         '''Returns the tasks of the currently logged in User'''
