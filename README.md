@@ -2,8 +2,7 @@
 ## A Basic To-Do Web Application using Django Framework
 ### Features
 - User Authentication - Users can register, login and logout
-- Edit Tasks
-- Completed Tasks are also saved - If a user wants to visit them later
+- Add, Edit, Mark tasks as Complete/Incomplete and Delete Tasks
 - Created API End points to get the ```User Data``` and ```Tasks of a User```.
 
 ### Steps to be followed for first time use
