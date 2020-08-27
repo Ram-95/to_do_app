@@ -1,16 +1,16 @@
 {% extends "to_do_app/base.html" %}
 {% block content %}
-
+<!--
 <div class="container list_name_div">
 	<h2 class="list_name">To-Do List</h2>
 </div>
-
-<div class="container mt-2" id="list-container1">
+-->
+<div class="container" id="list-container1">
 
 	<table class="table table-hover" id="maintable">
 		<thead class="thead-dark">
 			<th colspan=4>
-				<h3>Active Tasks</h3>
+				<h3 class="active_heading">Active Tasks</h3>
 			</th>
 		</thead>
 
@@ -49,11 +49,11 @@
 		</tbody>
 	</table>
 </div>
-<div class="container mt-3" id="list-container2">
+<div class="container" id="list-container2">
 	<table class="table mt-3" id="completed-table">
 		<thead class="thead-green">
 			<th colspan=4>
-				<h3>Completed Tasks</h3>
+				<h3 class="completed_heading">Completed Tasks</h3>
 			</th>
 		</thead>
 		<tbody>

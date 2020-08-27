@@ -75,7 +75,7 @@ body {
 }
 
 .auth-section {
-    width: 60%;
+    width: 65%;
 }
 
 .account-img {
@@ -199,10 +199,15 @@ ul {
     padding-inline-start: 22px;
 }
 
+/* CSS for Mobile Phone Screens */
 @media only screen and (max-width: 600px) {
     .form-check-input {
         width: 22px;
         height: 22px;
+    }
+    
+    .main-container {
+        margin-top: 80px;
     }
     .text-left {
         font-size: 15px;
@@ -215,7 +220,8 @@ ul {
         font-size: smaller;
     }
     #list-container1, #list-container2 {
-        width: 100%;
+        width: auto;
+        padding: 0;
     }
     .content-section {
         width: 100%;
@@ -228,5 +234,14 @@ ul {
     }
     .homepage_title {
         font-size: 55px;
+    }
+    .active_heading, .completed_heading {
+        font-size: 22px;
+    }
+    #add_task_btn, #clear_all_completed_tasks {
+        font-size: 12px;
+    }
+    .auth-section {
+        width: auto;
     }
 }

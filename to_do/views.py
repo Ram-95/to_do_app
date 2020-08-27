@@ -103,7 +103,7 @@ def add_new_task(request):
     '''Adds a New Task to the Task Table in Database.'''
     if request.method == 'POST':
         # Getting the task Name from Ajax
-        task_name = request.POST['task_title']
+        task_name = request.POST['task_title'].strip()
         # Dummy User - for the purpose of testing
         creator = request.user
         # Adding the task to the Database Table - Task
@@ -168,7 +168,7 @@ def update_task(request):
         # Querying the Task model to get the task based on task_id
         changed_task = Task.objects.get(id=task_id)
         # Updating the Task Name with the NEW Value
-        changed_task.task_title = new_task
+        changed_task.task_title = new_task.strip()
         # Saving the changes to the Database
         changed_task.save()
         # For Debugging Purpose
