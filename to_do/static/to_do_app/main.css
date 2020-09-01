@@ -1,5 +1,6 @@
 body {
     max-width: 100%;
+    background-image: url('body_background.png');
 }
 
 .main-container {
@@ -47,6 +48,11 @@ body {
     background-color: #81b54e;
 }
 
+.btn-signup {
+    color: #f8f9fa;
+    background-color: #2055dc;
+}
+
 .btn-side {
     background-color: #dc3545;
     border: none;
@@ -76,6 +82,10 @@ body {
 
 .auth-section {
     width: 65%;
+    /*border: 1px solid #dad34861;
+    padding: 18px;
+    background-color: #dad34861;
+    border-radius: 12px;*/
 }
 
 .account-img {
@@ -115,7 +125,8 @@ table>table {
 }
 
 .homepage_div {
-    background-color: #0a0702c7;
+    background-color: #101010ad;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tag_line {
@@ -200,12 +211,12 @@ ul {
 }
 
 /* CSS for Mobile Phone Screens */
+
 @media only screen and (max-width: 600px) {
     .form-check-input {
         width: 22px;
         height: 22px;
     }
-    
     .main-container {
         margin-top: 80px;
     }
