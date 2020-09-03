@@ -11,7 +11,10 @@ from .views import TaskListView
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('tasks/', TaskListView.as_view(), name='tasks'),
+    # Uncomment this if using Class Based View
+    #path('tasks/', TaskListView.as_view(), name='tasks'),
+    # Using Function based view
+    path('tasks/', views.tasks, name='tasks'),
     path('test/', views.test, name='test'),
     path('move_tasks/', views.move_tasks, name='move_tasks'),
     path('add_new_task/', views.add_new_task, name='add_new_task'),

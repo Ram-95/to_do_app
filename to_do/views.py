@@ -1,6 +1,7 @@
 from django.shortcuts import render
 # Imports our 'Task' Model(Table) - i.e, Our Table in the Database
 from .models import Task
+from django.db.models import Max
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -22,13 +23,15 @@ def index(request):
 def tasks(request):
     # Gets the Currently Logged In user
     current_user = request.user
+    # Getting the Latest date - The date when the user made a modification
+    max_date = current_user.task_set.all().aggregate(max_date=Max('date_posted'))['max_date']
     # print(f'Current User: {current_user.username}')
     context = {
         # Shows the tasks of a particular User
         # 'tasks': user.task_set.all()
         # Shows all the tasks from the DB
-        'tasks': current_user.task_set.all()
-        
+        'tasks': current_user.task_set.all(),
+        'max_date': max_date
     }
     return render(request, 'to_do_app/tasks.html', context)
 

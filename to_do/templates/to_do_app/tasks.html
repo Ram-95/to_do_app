@@ -5,8 +5,9 @@
 	<h2 class="list_name">To-Do List</h2>
 </div>
 -->
-<div class="container" id="list-container1">
 
+<div class="container" id="list-container1">
+	
 	<table class="table table-hover" id="maintable">
 		<thead class="thead-dark">
 			<th colspan=4>
@@ -48,7 +49,9 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	<small class="text-muted">Last modified on: {{ max_date|date:"F j, Y" }}</small>
 </div>
+
 <div class="container" id="list-container2">
 	<table class="table mt-3" id="completed-table">
 		<thead class="thead-green">
