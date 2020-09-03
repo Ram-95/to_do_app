@@ -51,8 +51,8 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     path('edit_profile/', user_views.edit_profile, name='edit_profile'),
     path('', include(router.urls)),
-    path('user_tasks/user=<username>/', user_views.TaskViewSet.as_view()),
-    path('profile_info/user=<username>/', user_views.ProfileViewSet.as_view()),
+    path('api/user_tasks/user=<username>/', user_views.TaskViewSet.as_view()),
+    path('api/profile_info/user=<username>/', user_views.ProfileViewSet.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
 ]

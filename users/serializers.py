@@ -8,7 +8,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     """Serializes the User Data and Shows the User Information in JSON format."""
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('username', 'email')
 
 
 class TaskSerializer(serializers.HyperlinkedModelSerializer):

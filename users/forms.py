@@ -14,6 +14,7 @@ class UserRegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=15)
     last_name = forms.CharField(max_length=15)
     email = forms.EmailField()
+    
 
     class Meta:
         '''This class tells to which model our form data should be submitted. In this case - User Model'''
