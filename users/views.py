@@ -67,6 +67,8 @@ def profile(request):
     # Gets the Currently Logged In user
     current_user = request.user
     # print(f'Current User: {current_user.username}')
+    fname = User.objects.filter(username=current_user).first().first_name
+    lname = User.objects.filter(username=current_user).first().last_name
     context = {
         # Shows the tasks of a particular User
         # 'tasks': user.task_set.all()
@@ -74,7 +76,8 @@ def profile(request):
         'tasks': current_user.task_set.all(),
         'active_count': Task.objects.filter(author=current_user, is_checked=False).count(),
         'completed_count': Task.objects.filter(author=current_user, is_checked=True).count(),
-        'title': current_user
+        'title': current_user,
+        'name': fname + ' ' + lname
 
     }
 

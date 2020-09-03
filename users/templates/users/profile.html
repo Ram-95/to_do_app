@@ -5,7 +5,7 @@
   <div class="media border row center-block d-flex justify-content-center p-3">
     <img class="rounded-circle account-img img-responsive pull-left" src="{{ user.profile.image.url }}">
     <div class="container media-body m-auto">
-      <h3 class="account-heading">{{ user.username }}</h3>
+      <h3 class="account-heading">{{ name }}</h3>
       <p class="text-secondary">{{ user.email }}</p>
       <a href="{% url 'edit_profile' %}"><button class="btn btn-danger" style="border-radius: 18px;">Edit
           Profile</button></a>
