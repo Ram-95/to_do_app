@@ -1,6 +1,6 @@
 body {
     max-width: 100%;
-    background-image: url('body_background.png');
+    /* background-image: url('body_background.png');*/
 }
 
 .main-container {
@@ -210,6 +210,10 @@ ul {
     padding-inline-start: 22px;
 }
 
+.nav-item a:hover {
+    border-bottom: 1px solid #fff;
+}
+
 /* CSS for Mobile Phone Screens */
 
 @media only screen and (max-width: 600px) {
@@ -234,7 +238,6 @@ ul {
         width: auto;
         padding: 0;
     }
-   
     .content-section {
         width: 100%;
     }
