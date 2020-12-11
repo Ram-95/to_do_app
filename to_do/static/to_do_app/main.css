@@ -214,6 +214,10 @@ ul {
     border-bottom: 1px solid #fff;
 }
 
+.sect_container {
+    background-color: #dc3545;
+}
+
 /* CSS for Mobile Phone Screens */
 
 @media only screen and (max-width: 600px) {

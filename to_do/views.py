@@ -15,7 +15,7 @@ from django.utils.decorators import method_decorator
 
 def index(request):
     '''The first page of Application.'''
-    return render(request, 'to_do_app/index.html')
+    return render(request, 'to_do_app/landing.html')
 
 
 # Using function based views
@@ -24,7 +24,8 @@ def tasks(request):
     # Gets the Currently Logged In user
     current_user = request.user
     # Getting the Latest date - The date when the user made a modification
-    max_date = current_user.task_set.all().aggregate(max_date=Max('date_posted'))['max_date']
+    max_date = current_user.task_set.all().aggregate(
+        max_date=Max('date_posted'))['max_date']
     # print(f'Current User: {current_user.username}')
     context = {
         # Shows the tasks of a particular User
@@ -49,7 +50,6 @@ class TaskListView(ListView):
     model = Task
     template_name = 'to_do_app/tasks.html'  # <app_name>/<model>_<viewtype>.html
     context_object_name = 'tasks'
-    
 
     def get_queryset(self):
         '''Returns the tasks of the currently logged in User'''
@@ -67,6 +67,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 '''
+
 
 @csrf_exempt
 @login_required
@@ -194,4 +195,3 @@ def refresh_data(request):
         return JsonResponse(data, safe=False)
     else:
         return HttpResponse('Request Method is not POST.')
-
