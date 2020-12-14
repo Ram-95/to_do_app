@@ -15,7 +15,7 @@ from django.utils.decorators import method_decorator
 
 def index(request):
     '''The first page of Application.'''
-    return render(request, 'to_do_app/landing.html')
+    return render(request, 'to_do_app/index.html')
 
 
 # Using function based views

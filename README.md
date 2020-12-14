@@ -3,7 +3,7 @@
 ### Features
 - User Authentication - Users can register, login and logout
 - Add, Edit, Mark tasks as Complete/Incomplete and Delete Tasks
-- Created API End points to get the ```User Data``` and ```Tasks of a User```.
+- Created API End points to get the ```User Data``` and ```User Tasks```
 
 ### Steps to be followed for first time use
 - Run these commands - This will create your Tables (by the Model definition) in the Database
