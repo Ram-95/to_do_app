@@ -20,7 +20,7 @@ class UserRegisterForm(UserCreationForm):
         '''This class tells to which model our form data should be submitted. In this case - User Model'''
         model = User
         # The data from these fields is stored in the User Model.
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = [ 'username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
