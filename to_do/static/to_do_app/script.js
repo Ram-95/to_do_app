@@ -18,17 +18,28 @@ $(document).ready(function () {
                 // Removes all the rows except the first row from the Completed Table
                 $('#completed-table tbody').find("tr:gt(0)").remove();
                 // Parsing the JSON Data
-                
+
                 response = JSON.parse(data);
 
                 // Resets the Add Task input field
                 $('#maintable tbody').find('tr:eq(0)').find('input').val("");
+
+                var dates = []
+                for (var i = 0; i < response.length; i++) {
+                    dates.push(new Date(response[i].fields['date_posted']));
+                }
+                var maxDate = new Date(Math.max.apply(null, dates));
+                //console.log(maxDate);
+
+                // Updating the timestamp - Last modified date
+                $('.timestamp').text("Last modified on: " + maxDate.toLocaleString('en-US', { month: 'long', day: '2-digit', year: 'numeric' }));
 
                 // Loading the tables using JSON data
                 for (var i = 0; i < response.length; i++) {
                     var task_id = response[i].pk;
                     var task_title = response[i].fields['task_title'];
                     var is_checked = response[i].fields['is_checked'];
+
                     //console.log('Id: ' + task_id + ' Name: ' + task_title);
                     // Loading Active Tasks Table
                     if (is_checked == false) {
@@ -206,7 +217,7 @@ $(document).ready(function () {
         var task_name;
         // Getting the Task Name - Stripping the leading and trailing whitespaces
         task_name = $.trim($('#add_task').val());
-        
+
         if (task_name != "") {
             $.ajax(
                 {
