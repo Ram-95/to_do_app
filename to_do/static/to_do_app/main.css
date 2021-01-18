@@ -73,7 +73,7 @@ body {
 
 #list-container1, #list-container2 {
     text-align: center;
-    padding: 20px;
+    /*padding: 20px;*/
     width: 90%;
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     display: table;
@@ -266,5 +266,9 @@ ul {
     }
     .auth-section {
         width: auto;
+    }
+    .brand_name {
+        font-size: 32px;
+        vertical-align: text-top;
     }
 }
