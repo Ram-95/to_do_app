@@ -218,6 +218,10 @@ ul {
     background-color: #dc3545;
 }
 
+.text-left {
+    font-size: 1.25rem;
+}
+
 /* CSS for Mobile Phone Screens */
 
 @media only screen and (max-width: 600px) {
