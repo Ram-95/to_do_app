@@ -24,8 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = '*b_dsk_e!o80q+oo=2k_8y(-8zvlfpk0r=^g!awx5eddmgi9nz'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+DEBUG_PROPAGATE_EXCEPTIONS = True
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = False
 
 ALLOWED_HOSTS = ['to-do-app-pydj.herokuapp.com']
 
