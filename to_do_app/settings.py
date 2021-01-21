@@ -27,8 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-DEBUG = False
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['to-do-app-pydj.herokuapp.com']
 
