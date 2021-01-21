@@ -12,11 +12,12 @@ body {
 .table td {
     padding-left: 20px;
     background-color: beige;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .form-check-input {
-    width: 28px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
 }
 
 .form-control {
