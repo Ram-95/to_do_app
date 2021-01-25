@@ -10,7 +10,7 @@ certifi==2020.6.20
 cffi==1.14.2
 chardet==3.0.4
 constantly==15.1.0
-cryptography==3.0
+cryptography==3.2
 cssselect==1.1.0
 dj-database-url==0.5.0
 Django==3.0.8
@@ -25,7 +25,7 @@ idna==2.10
 incremental==17.5.0
 isort==4.3.21
 lazy-object-proxy==1.4.3
-lxml==4.5.2
+lxml==4.6.2
 mccabe==0.6.1
 multidict==5.0.2
 oauthlib==3.1.0
