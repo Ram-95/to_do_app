@@ -57,8 +57,12 @@ urlpatterns = [
 
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# Adding the Routes to serve static files - media files
+
+# Adding the Routes to serve static files - media files only if DEBUG=True
+'''
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+'''
