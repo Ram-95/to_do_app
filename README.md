@@ -1,4 +1,4 @@
-# To_Do_App [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+# To_Do_App [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ## A Basic To-Do Web Application using Django Framework
 ### Features
 - User Authentication - Users can register, login and logout
