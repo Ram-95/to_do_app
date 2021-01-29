@@ -53,8 +53,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api/user_tasks/user=<username>/', user_views.TaskViewSet.as_view()),
     path('api/profile_info/user=<username>/', user_views.ProfileViewSet.as_view()),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
