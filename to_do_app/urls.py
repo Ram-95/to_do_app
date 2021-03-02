@@ -25,7 +25,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users.forms import EmailValidationOnForgotPassword
 from django.contrib.sitemaps.views import sitemap
-from myapp.sitemaps import StaticViewSitemap
+from to_do.sitemaps import StaticViewSitemap
 
 # Routes to the API Endpoint
 router = routers.SimpleRouter()
