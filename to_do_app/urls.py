@@ -24,9 +24,16 @@ from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 from users.forms import EmailValidationOnForgotPassword
+from django.contrib.sitemaps.views import sitemap
+from to_do.sitemaps import StaticViewSitemap
+
 
 # Routes to the API Endpoint
 router = routers.SimpleRouter()
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 
 
 urlpatterns = [
@@ -53,7 +60,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api/user_tasks/user=<username>/', user_views.TaskViewSet.as_view()),
     path('api/profile_info/user=<username>/', user_views.ProfileViewSet.as_view()),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 
 ]
 
