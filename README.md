@@ -30,3 +30,6 @@ $ python manage.py createsuperuser
 
 
 #### See live at: https://to-do-app-pydj.herokuapp.com/
+- Use the following as credentials to checkout the application.
+  - Username: **TestUser**
+  - Password: **Passuser@123**
