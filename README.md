@@ -33,3 +33,5 @@ $ python manage.py createsuperuser
 - Use the following as credentials to checkout the application.
   - Username: **TestUser**
   - Password: **Passuser@123**
+
+- **PS**: *Do NOT upload any profile picture as I have not configured any Amazon S3 bucket.*
