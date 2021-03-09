@@ -18,7 +18,7 @@ $(document).ready(function () {
                 // Removes all the rows except the first row from the Completed Table
                 $('#completed-table tbody').find("tr:gt(0)").remove();
                 // Parsing the JSON Data
-                
+
                 response = JSON.parse(data);
 
                 // Resets the Add Task input field

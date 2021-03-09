@@ -7,7 +7,7 @@
 -->
 
 <div class="container" id="list-container1">
-	
+
 	<table class="table table-hover" id="maintable">
 		<thead class="thead-dark">
 			<th colspan=4>
@@ -17,15 +17,16 @@
 
 		<tbody>
 			<tr>
-			<form action="">
-				<td colspan=3>
-					<input type="text" name="task" style="float: left;" class="form-control" id="add_task"
-						placeholder="Enter your Task (Max. 60 characters)" maxlength="60" autofocus>
-				</td>
-				<td>
-					<button type="submit" class="btn btn-success" id="add_task_btn" title="Add a New Task">Add</button>
-				</td>
-			</form>
+				<form action="">
+					<td colspan=3>
+						<input type="text" name="task" style="float: left;" class="form-control" id="add_task"
+							placeholder="Enter your Task (Max. 60 characters)" maxlength="60" autofocus>
+					</td>
+					<td>
+						<button type="submit" class="btn btn-success" id="add_task_btn"
+							title="Add a New Task">Add</button>
+					</td>
+				</form>
 			</tr>
 			{% for task in tasks %}
 			{% if not task.is_checked %}
@@ -71,7 +72,8 @@
 				<td>
 
 					<input type="checkbox" title="Mark as Incomplete" class="form-check-input mark_as_undone"
-						id="{{ task.pk }}" checked></td>
+						id="{{ task.pk }}" checked>
+				</td>
 				<td>
 					<h4 class="text-left completed_tasks" id="title{{ task.pk }}">{{ task.task_title }}</h4>
 				</td>
