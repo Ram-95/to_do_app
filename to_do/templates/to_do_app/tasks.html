@@ -17,16 +17,15 @@
 
 		<tbody>
 			<tr>
+			<form action="">
 				<td colspan=3>
 					<input type="text" name="task" style="float: left;" class="form-control" id="add_task"
 						placeholder="Enter your Task (Max. 60 characters)" maxlength="60" autofocus>
 				</td>
 				<td>
-					<button type="button" class="btn btn-success" id="add_task_btn"
-						title="Add a New Task"><strong>Add</strong></button>
-
-
+					<button type="submit" class="btn btn-success" id="add_task_btn" title="Add a New Task">Add</button>
 				</td>
+			</form>
 			</tr>
 			{% for task in tasks %}
 			{% if not task.is_checked %}
