@@ -17,22 +17,24 @@
 
 		<tbody>
 			<tr>
+				<form action="">
 				<td colspan=3>
 					<input type="text" name="task" style="float: left;" class="form-control" id="add_task"
 						placeholder="Enter your Task (Max. 60 characters)" maxlength="60" autofocus>
 				</td>
 				<td>
-					<button type="button" class="btn btn-success" id="add_task_btn"
-						title="Add a New Task"><strong>Add</strong></button>
-
-
+					<button type="submit" class="btn btn-success" id="add_task_btn" title="Add a New Task">Add</button>
 				</td>
+			</form>
 			</tr>
 			{% for task in tasks %}
 			{% if not task.is_checked %}
 			<tr class="task_{{ task.id }}">
-				<td><input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done"
-						id="{{ task.id }}"></td>
+				<td>
+					<input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done"
+						id="{{ task.id }}">
+					</td>
+						
 				<td colspan="2">
 					<h4 class="text-left" id="title{{ task.id }}">{{ task.task_title }}</h4>
 				</td>
