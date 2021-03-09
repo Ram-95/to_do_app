@@ -18,7 +18,7 @@ $(document).ready(function () {
                 // Removes all the rows except the first row from the Completed Table
                 $('#completed-table tbody').find("tr:gt(0)").remove();
                 // Parsing the JSON Data
-
+                
                 response = JSON.parse(data);
 
                 // Resets the Add Task input field
@@ -81,19 +81,6 @@ $(document).ready(function () {
         //$("#maintable").load(window.location.href + " #maintable");
         //$("#completed-table").load(window.location.href + " #completed-table");
     }
-
-    /* Adds a New Row to the Table
-    $(document).on("click", "#add-new-row", function () {
-        var row = '<tr><td colspan="3"><input type="text" name="task" style="float: left;" class="form-control" id="add_task" placeholder="Enter your Task (Max. 60 characters)" maxlength="60"></td><td><i class="fa fa-check" id="add_task_btn" title="Save" style="color: green;"></i><i class="fa fa-close deleterow delete_new_row" title="Delete this Task" style="color:red; float:right;"></i></td></tr>';
-        //alert('Clicked!');
-        //if ($('#add_task').length == 0) {
-            // Append the new row to the tbody of the table and not the Table.
-            $("#maintable > tbody tr:first").after(row);
-            //$("#maintable > tbody").append(row);
-            console.log('Length: ' + $('#add_task').length);
-        //}
-    });
-    */
 
     /* Script to fadeout flash messages after 5 seconds */
     window.setTimeout(function () {
@@ -172,19 +159,22 @@ $(document).ready(function () {
         else {
             // Gets the ID of the Task i.e Checkbox
             var val = $(this).parent().parent().find('input').attr("id");
-            // AJAX Call - Will pass the task_id to be deleted to the delete_task view and upon success will remove the same from the Active task table
-            $.ajax(
-                {
-                    type: "POST",
-                    url: "/delete_task/",
-                    cache: false,
-                    data: {
-                        task_id: val,
-                    },
-                    success: function () {
-                        refreshData();
-                    }
-                });
+            var c = confirm('Are you sure you want to delete this task ?');
+            if (c == true) {
+                // AJAX Call - Will pass the task_id to be deleted to the delete_task view and upon success will remove the same from the Active task table
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/delete_task/",
+                        cache: false,
+                        data: {
+                            task_id: val,
+                        },
+                        success: function () {
+                            refreshData();
+                        }
+                    });
+            }
         }
 
     });
@@ -198,16 +188,18 @@ $(document).ready(function () {
             alert('No Completed Tasks to Clear!');
         }
         else {
-
-            $.ajax(
-                {
-                    type: "POST",
-                    url: "/delete_all_completed_tasks/",
-                    data: {},
-                    success: function () {
-                        refreshData();
-                    }
-                });
+            var cd = confirm('Are you sure you want to delete all completed tasks ?');
+            if (cd == true) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/delete_all_completed_tasks/",
+                        data: {},
+                        success: function () {
+                            refreshData();
+                        }
+                    });
+            }
         }
     });
 
