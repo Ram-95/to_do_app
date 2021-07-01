@@ -231,7 +231,7 @@ $(document).ready(function () {
                         //Add the added task to the Active Tasks Table
                         //var row = '<tr><td><input type="checkbox" title="Mark as Complete" class="form-check-input mark_as_done" id="' + task_id + '"></td><td colspan="2"><h4 align="left" id="title' + task_id + '">' + task_name + '</h4></td><td><button class="btn btn-side deleterow delete_existing_row" title="Delete this Task" style="float: right;"><i class="fa fa-close"></i></button></td></tr>';
                         //$('#maintable').append(row);
-                        refreshData();
+                        //refreshData();
                     }
                 })
         }
