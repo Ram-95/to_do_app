@@ -5,7 +5,11 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'to_do_app.settings.production')
+    curr_env = os.environ.get('DJANGO_ENV')
+    if curr_env == 'DEV':
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'to_do_app.settings.development'
+    elif curr_env == 'PROD':
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'to_do_app.settings.production'
 
     try:
         from django.core.management import execute_from_command_line
