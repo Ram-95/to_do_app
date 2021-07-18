@@ -13,6 +13,8 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
     # Method to scale the Uploaded images to our defined resolution - 300 x 300
+    # Commenting this code for now because it causes issues when resizing on AWS S3.
+    '''
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
         img = Image.open(self.image.path)
@@ -20,3 +22,4 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+    '''
