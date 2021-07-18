@@ -54,3 +54,6 @@ whitenoise==5.2.0
 wrapt==1.12.1
 yarl==1.6.3
 zope.interface==5.1.0
+boto3==1.18.1
+django-storages==1.11.1
+botocore==1.21.1
