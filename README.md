@@ -24,10 +24,6 @@ $ python manage.py createsuperuser
   
   - To get the Tasks of a User - ```/api/user_tasks/user=<Username>/```
 
-### Below is the screenshot of the Application
-
-<img src="https://raw.githubusercontent.com/Ram-95/to_do_app/master/Tasks.JPG">
-
 
 #### See live at: https://to-do-app-pydj.herokuapp.com/
 - Use the following as credentials to checkout the application.
