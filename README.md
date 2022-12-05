@@ -23,11 +23,3 @@ $ python manage.py createsuperuser
   - To get the User information - ```/api/profile_info/user=<Username>/```
   
   - To get the Tasks of a User - ```/api/user_tasks/user=<Username>/```
-
-
-#### See live at: https://to-do-app-pydj.herokuapp.com/
-- Use the following as credentials to checkout the application.
-  - Username: **TestUser**
-  - Password: **Passuser@123**
-
-- **PS**: *Do NOT upload any profile picture as I have not configured any Amazon S3 bucket.*
