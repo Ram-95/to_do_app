@@ -7,6 +7,11 @@
 
 ### Steps to be followed for first time use
 - Create an Environment variable `DJANGO_ENV=DEV` to run the app in local.
+- Generate a secret key using the below code and save it to an Environment variable `SECRET_KEY`.
+  ```python
+  import secrets
+  secret_key = secrets.token_hex()
+  ```
 - Install all the dependencies using the below command
   ```
   pip install -r requirements.txt
