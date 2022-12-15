@@ -6,18 +6,19 @@
 - Created API End points to get the ```User Data``` and ```User Tasks```
 
 ### Steps to be followed for first time use
-- Run these commands - This will create your Tables (by the Model definition) in the Database
-```
-python manage.py migrate
-
-python manage.py makemigrations
-
-python manage.py migrate
-```
-- Create an ```admin``` user by running these following commands
-```
-$ python manage.py createsuperuser
-```
+- Create an Environment variable `DJANGO_ENV=DEV` to run the app in local.
+- Install all the dependencies using the below command
+  ```
+  pip install -r requirements.txt
+  ```
+- Run the below command - This will create the tables (by the Model definition) in the Database
+  ```
+  python manage.py migrate
+  ```
+- Create an ```admin``` user by running these following command
+  ```
+  $ python manage.py createsuperuser
+  ```
 ### API End Points
 
   - To get the User information - ```/api/profile_info/user=<Username>/```
