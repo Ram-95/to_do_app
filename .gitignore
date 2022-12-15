@@ -28,6 +28,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+to_do_app/media/profile_pics/*.jpg
+!to_do_app/media/default.png    # allow default.png to be tracked
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
